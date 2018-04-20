@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="{{ config.web_host }}/manifest.json">
+    <link rel="shortcut icon" href="{{ config.web_host }}/favicon.ico">
+
+    <title>jack ketcham</title>
+    <meta name="description" content="my website">
+    <base href="/">
+
+    <link rel="stylesheet" href="{{ config.web_host }}/styles.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      window.__INITIAL_STATE__ = {{ initial_state }};
+    </script>
+    <script src="{{ config.web_host }}/main.bundle.js"></script>
+  </body>
+</html>
