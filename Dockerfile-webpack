@@ -1,9 +1,9 @@
-from node:6.11.1-alpine
+from node:8.11.1-alpine
 
 WORKDIR /usr/src/app
 
-RUN yarn global add gulp && yarn install
+RUN yarn global add gulp@next && yarn install
 
 EXPOSE 8181
 
-CMD ["gulp", "watch"]
+CMD ["npm", "run", "dev"]

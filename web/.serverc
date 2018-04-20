@@ -1,0 +1,12 @@
+{
+  "logTime": true,
+  "clipboard": false,
+  "logLevel": "trace",
+  "hot": true,
+  "dev": {
+    "headers": { "Access-Control-Allow-Origin": "*" },
+    "publicPath": "http://localhost:8181/dist/"
+  },
+  "host": "localhost",
+  "port": 8181
+}
