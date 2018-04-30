@@ -1,0 +1,13 @@
+.listInline {
+  margin: 0;
+  padding: 0;
+}
+
+.listInline li {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.listInline li:last-child {
+  margin-right: 0;
+}
