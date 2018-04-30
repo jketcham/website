@@ -9,9 +9,8 @@ class HomePage extends Component {
   render() {
     return (
       <div className="home-page">
-        welcome to the home page.
+        <h1>Jack Ketcham</h1>
         <div>
-          verified
           {this.renderSomething()}
         </div>
       </div>

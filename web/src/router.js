@@ -1,22 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import store, { history } from './store';
-
-import App from './components/app';
-import HomePage from './components/home-page';
+import Root from './components/root';
+import HomePage from './components/home';
 
 
 const router = (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App>
-        <Route exact path="/" component={HomePage} />
-      </App>
-    </ConnectedRouter>
-  </Provider>
+  <Router>
+    <Root>
+      <Route exact path="/" component={HomePage} />
+    </Root>
+  </Router>
 );
 
 

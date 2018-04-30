@@ -1,8 +1,10 @@
 import React from 'react';
 
+import styles from './nav-bar.css';
+
 
 const Navbar = () => (
-  <div className="website__nav-bar">
+  <div className="nav-bar">
     <h3>jack ketcham</h3>
     <ul className="list-inline">
       <li><a href="#about">about</a></li>
