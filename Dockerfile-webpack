@@ -2,7 +2,7 @@ from node:8.11.1-alpine
 
 WORKDIR /usr/src/app
 
-RUN yarn global add gulp@next && yarn install
+RUN npm i -g webpack-serve && npm install
 
 EXPOSE 8181
 
