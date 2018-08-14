@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.5'
 services:
   webpack:
     build:
@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     ports:
       - "8181:8181"
+      - "8081:8081"
   server:
     build:
       context: .
@@ -30,7 +31,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - db-volume
+      - db-volume:/data/db
   nginx:
     image: nginx
     labels:

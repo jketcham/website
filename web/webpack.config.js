@@ -11,9 +11,18 @@ const paths = {
   index: './src/index.js',
 };
 
-console.log('isDev', isDev);
-
 const config = {
+  serve: {
+    port: 8181,
+    host: '0.0.0.0',
+    hot: {
+      host: {
+        server: '0.0.0.0',
+        client: '0.0.0.0',
+      },
+    },
+  },
+
   entry: [ paths.index ],
 
   mode: process.env.NODE_ENV,
@@ -50,7 +59,7 @@ const config = {
       },
     }),
     new webpack.LoaderOptionsPlugin({
-      debug: true,
+      debug: isDev,
     }),
     new webpack.ProvidePlugin({
       fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
@@ -72,6 +81,5 @@ const config = {
     chunkFilename: '[name].js',
   },
 };
-
 
 module.exports = config;
