@@ -1,3 +1,11 @@
+.link {
+  color: black;
+}
+
+.link:visited {
+  color: black;
+}
+
 .listInline {
   margin: 0;
   padding: 0;

@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NavBar from './nav-bar';
+import { appContainer } from './root.css';
 
 
 const Root = ({ children }) => (
-  <div className="app-container">
+  <div className={appContainer}>
     <NavBar />
     {children}
   </div>
