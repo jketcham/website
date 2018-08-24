@@ -6,7 +6,7 @@ class HomePage extends Component {
   renderAbout() {
     return (
       <div>
-        <p>Hey, I'm Jack, welcome to my internet website.</p>
+        <p>Hey, I&apos;m Jack, welcome to my internet website.</p>
       </div>
     );
   }
@@ -54,6 +54,5 @@ class HomePage extends Component {
     );
   }
 }
-
 
 export default HomePage;

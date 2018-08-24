@@ -1,4 +1,4 @@
-:local .navBar {
+.navBar {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,11 +13,16 @@
   z-index: 1000;
 }
 
-:local .navBarHeader {
+.navBarHeader {
   margin: 0 24px 0 0;
   font-style: italic;
 }
 
-:local .navBar a {
+.navBar a {
   color: white;
+}
+
+.navBarList {
+  display: inline-block;
+
 }
