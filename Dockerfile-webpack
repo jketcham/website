@@ -2,7 +2,7 @@ from node:8.11.1-alpine
 
 WORKDIR /usr/src/app
 
-RUN npm i -g webpack-serve && npm install
+RUN npm install @babel/runtime && npm install
 
 EXPOSE 8181
 EXPOSE 8081
