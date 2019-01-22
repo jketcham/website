@@ -1,0 +1,23 @@
+.page {
+  margin: 0 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 40px);
+  max-width: 600px;
+}
+
+.page p {
+  white-space: pre-wrap;
+  line-height: 1.5em;
+  font-size: 1.3em;
+}
+
+.page header {
+  width: 100%;
+}
+
+.post-date {
+  font-size: 1em;
+  text-transform: lowercase;
+}

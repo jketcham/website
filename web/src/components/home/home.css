@@ -1,3 +1,22 @@
-:scope {
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.page ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page li {
+  padding: 0;
+  margin: 0;
+}
+
+.page h1 {
+  margin: 0;
+  font-size: 50vw;
 }

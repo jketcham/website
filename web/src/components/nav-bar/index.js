@@ -1,15 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { compose, withProps } from 'recompose';
+import { withRouter } from 'react-router-dom';
 
-import { navBar, navBarHeader, navBarList } from './nav-bar.css';
+import { active, navBar, navBarHeader, navBarList } from './nav-bar.css';
 
-const Navbar = () => (
+const enhance = compose(
+  withRouter,
+  withProps(
+    ({ location }) => ({
+      isActive: path => location.pathname.startsWith(path),
+    }),
+  ),
+);
+
+const Navbar = ({ isActive }) => (
   <div className={navBar}>
-    <h3 className={navBarHeader}>jack ketcham</h3>
+    <h3 className={navBarHeader}>
+      <a href="/">jack ketcham</a>
+    </h3>
     <ul className={navBarList}>
-      <li><a href="/posts">posts</a></li>
-      <li><a href="/photos">photos</a></li>
+      <li
+        className={isActive('/blog') ? active : ''}
+      >
+        <a href="/blog">blog</a>
+      </li>
+      <li
+        className={isActive('/photos') ? active : ''}
+      >
+        <a href="/photos">photos</a>
+      </li>
     </ul>
   </div>
 );
 
-export default Navbar;
+Navbar.propTypes = {
+  isActive: PropTypes.func.isRequired,
+};
+
+export default enhance(Navbar);

@@ -2,3 +2,19 @@
   position: relative;
   top: 24px;
 }
+
+html, body {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+*, *:after, *:before {
+  box-sizing: inherit;
+}
+
+a {
+  color: black;
+}

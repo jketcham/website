@@ -1,58 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { link } from '../shared.css';
+import { page, link } from './home.css';
 
-class HomePage extends Component {
-  renderAbout() {
-    return (
-      <div>
-        <p>Hey, I&apos;m Jack, welcome to my internet website.</p>
-      </div>
-    );
-  }
-
-  renderLinks() {
-    return (
-      <div>
-        <p>You can find me at these fine websites:</p>
-        <ul>
-          <li>
-            <a href="https://github.com/jketcham" rel="noopener" className={link}>
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/_jket" rel="noopener" className={link}>
-              Twitter
-            </a>
-          </li>
-          <li>
-            <a href="https://keybase.io/jket" rel="noopener" className={link}>
-              Keybase
-            </a>
-          </li>
-          <li>
-            <a href="https://flickr.com/photos/jackketcham" rel="noopener" className={link}>
-              Flickr
-            </a>
-          </li>
-        </ul>
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        <div>
-          {this.renderAbout()}
-        </div>
-        <div>
-          {this.renderLinks()}
-        </div>
-      </div>
-    );
-  }
-}
+const HomePage = () => (
+  <div className={page}>
+    <h1>Hi</h1>
+    <div>
+      <p>I&apos;m Jack.</p>
+      <ul>
+        <li>
+          <a href="https://github.com/jketcham" rel="noopener" className={link}>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/_jket" rel="noopener" className={link}>
+            Twitter
+          </a>
+        </li>
+        <li>
+          <a href="https://flickr.com/photos/jackketcham" rel="noopener" className={link}>
+            Flickr
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+);
 
 export default HomePage;
