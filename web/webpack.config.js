@@ -7,23 +7,10 @@ if (typeof process.env.NODE_ENV === 'undefined') {
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const paths = {
-  index: './src/index.js',
-};
-
 const config = {
-  serve: {
-    port: 8181,
-    host: '0.0.0.0',
-    hot: {
-      host: {
-        server: '0.0.0.0',
-        client: '0.0.0.0',
-      },
-    },
-  },
+  devtool: 'cheap-module-eval-source-map',
 
-  entry: [ paths.index ],
+  entry: ['./src/index.js'],
 
   mode: process.env.NODE_ENV,
 
@@ -61,9 +48,7 @@ const config = {
     new webpack.LoaderOptionsPlugin({
       debug: isDev,
     }),
-    new webpack.ProvidePlugin({
-      fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
-    }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 
   resolve: {
@@ -79,6 +64,17 @@ const config = {
     publicPath: 'http://localhost:8181/dist/',
     filename: '[name].bundle.js',
     chunkFilename: '[name].js',
+  },
+
+  devServer: {
+    port: 8181,
+    host: '0.0.0.0',
+    hot: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    }
   },
 };
 
