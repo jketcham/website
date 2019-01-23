@@ -25,7 +25,7 @@ class Post(Document):
     }
 
     title = StringField(required=True)
-    slug = StringField(required=True)
+    slug = StringField(required=True, unique=True)
     content = StringField(required=True)
     post_type = StringField(required=True, choices=POST_TYPE, default='blog')
     tags = ListField(StringField())

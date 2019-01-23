@@ -9,7 +9,14 @@ from .schema.post import PostSchema
 
 class PostsResource(object):
     def on_get(self, req, resp):
-        posts = Post.objects
+        posts = Post.objects.order_by('-published')
+
+        if req.params.get('slug'):
+            post = Post.objects.get(slug=req.params['slug'])
+            test = PostSchema()
+            result = test.dump(post)
+            resp.body = json.dumps(result[0])
+            return
 
         post_schema = PostSchema(many=True)
         result = post_schema.dump(posts)

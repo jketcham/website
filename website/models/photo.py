@@ -20,7 +20,7 @@ class Photo(Document):
         'collection': 'photos',
     }
 
-    title = StringField(required=True)
+    title = StringField(required=True, unique=True)
     description = StringField()
     tags = ListField(StringField())
     location_title = StringField()
@@ -34,7 +34,6 @@ class Photo(Document):
     image_metadata = DictField()
 
     date_uploaded = DateTimeField(default=datetime.now)
-    date_created = DateTimeField()
 
 
 class EmbeddedPhoto(EmbeddedDocument):
