@@ -7,4 +7,4 @@ RUN npm install @babel/runtime && npm install
 EXPOSE 8181
 EXPOSE 8081
 
-CMD ["npm", "run", "dev"]
+CMD ["node_modules/.bin/webpack-dev-server"]
