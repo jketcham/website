@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-webpack
-    volumes:
-      - ./web:/usr/src/app
     restart: unless-stopped
     ports:
       - "8181:8181"
