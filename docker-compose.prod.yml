@@ -8,7 +8,9 @@ services:
     depends_on:
       - mongo
     environment:
-      - VIRTUAL_HOST=jackketcham.com
+      - VIRTUAL_HOST=alpha.jackketcham.com
+      - LETSENCRYPT_HOST=alpha.jackketcham.com
+      - LETSENCRYPT_EMAIL=jack.ketcham@pm.me
     ports:
       - "8000:8000"
 
@@ -53,7 +55,7 @@ services:
       - ${NGINX_FILES_PATH:-./data}/certs:/etc/nginx/certs:ro
       - ${NGINX_FILES_PATH:-./data}/htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+      - ./docker/nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
     logging:
       driver: ${NGINX_GEN_LOG_DRIVER:-json-file}
       options:
