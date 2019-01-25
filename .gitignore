@@ -112,3 +112,4 @@ node_modules
 docker/nginx/certs/
 docker/nginx/conf.d/
 docker/nginx/data/
+docker/nginx/vhost.d/
