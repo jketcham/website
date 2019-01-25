@@ -20,7 +20,7 @@ COPY ./website /usr/src/app/website
 COPY ./config /usr/src/app/config
 
 # include web assets
-COPY --from=0 /usr/src/app/dist /usr/src/app/website/static/html
+COPY --from=0 /usr/src/app/dist/main.bundle.js /usr/src/app/website/static
 
 # install additional deps on top of alpine required by bcrypt and Pillow (jpeg-dev)
 # TODO: remove these deps after bcrypt installed to create smaller image
@@ -29,7 +29,7 @@ RUN apk add --no-cache gcc libffi libffi-dev libc-dev openssl-dev jpeg-dev
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENV ENV=dev
+ENV ENV=prod
 
 EXPOSE 8000
 
