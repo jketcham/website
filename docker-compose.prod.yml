@@ -1,0 +1,93 @@
+version: '3.5'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - nginx
+    environment:
+      - VIRTUAL_HOST=jackketcham.com
+    ports:
+      - "8000:8000"
+
+  mongo:
+    image: "mongo:3.4.5"
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - db-volume:/data/db
+
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+    network_mode: bridge
+
+  docker-gen:
+    image: jwilder/docker-gen
+    container_name: nginx-proxy-gen
+    command: -notify-sighup nginx-proxy -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - ./docker/nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen"
+    network_mode: bridge
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: nginx-proxy-le
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    network_mode: bridge
+
+  # nginx:
+  #   image: nginx
+  #   labels:
+  #       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+  #   container_name: nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./docker/nginx/conf.d:/etc/nginx/conf.d
+  #     - ./docker/nginx/vhost.d:/etc/nginx/vhost.d
+  #     - ./docker/nginx/html:/usr/share/nginx/html
+  #     - ./docker/nginx/certs:/etc/nginx/certs:ro
+
+  # nginx-gen:
+  #   image: jwilder/docker-gen
+  #   command: -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+  #   container_name: nginx-gen
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./docker/nginx/conf.d:/etc/nginx/conf.d
+  #     - ./docker/nginx/vhost.d:/etc/nginx/vhost.d
+  #     - ./docker/nginx/html:/usr/share/nginx/html
+  #     - ./docker/nginx/certs:/etc/nginx/certs:ro
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #     - ./docker/nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+
+volumes:
+  db-volume:
+  conf:
+  vhost:
+  html:
+  certs:
