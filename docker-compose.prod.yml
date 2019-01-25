@@ -3,13 +3,13 @@ services:
   server:
     build:
       context: .
-      dockerfile: Dockerfile-server
+      dockerfile: Dockerfile
     volumes:
       - ./web/dist:/usr/src/app/website/static/html
     restart: unless-stopped
     depends_on:
       - mongo
-      - nginx
+      - nginx-proxy
     environment:
       - VIRTUAL_HOST=jackketcham.com
     ports:
@@ -40,8 +40,6 @@ services:
     image: jwilder/docker-gen
     container_name: nginx-proxy-gen
     command: -notify-sighup nginx-proxy -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
-    volumes_from:
-      - nginx-proxy
     volumes:
       - ./docker/nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -52,8 +50,6 @@ services:
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-proxy-le
-    volumes_from:
-      - nginx-proxy
     volumes:
       - certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
