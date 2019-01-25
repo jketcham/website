@@ -1,3 +1,4 @@
+import io
 import os
 
 import falcon
@@ -8,7 +9,7 @@ from website.config import config
 
 def load_template(name):
     p = os.path.dirname(__file__)
-    path = os.path.join(p, '../static/html/', name)
+    path = os.path.join(p, '../static/', name)
     with open(os.path.abspath(path), 'r') as fp:
         return jinja2.Template(fp.read())
 
@@ -26,7 +27,13 @@ def get_initial_state(context):
 
 
 def pass_to_frontend(req, resp):
-    template = load_template('index.html')
+    if '/static/' in req.path:
+        resource = io.open('website{}'.format(req.path), 'r').read()
+
+        resp.body = resource
+        return
+
+    template = load_template('html/index.html')
 
     resp.content_type = 'text/html'
     resp.status = falcon.HTTP_200
