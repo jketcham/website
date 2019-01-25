@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-server
+    volumes:
+      - ./web/dist:/usr/src/app/website/static/html
     restart: unless-stopped
     depends_on:
       - mongo
