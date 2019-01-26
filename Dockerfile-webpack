@@ -2,8 +2,6 @@ from node:8.11.1-alpine
 
 WORKDIR /usr/src/app
 
-COPY ./web /usr/src/app
-
 RUN npm install @babel/runtime && npm install
 
 EXPOSE 8181

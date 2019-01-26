@@ -1,9 +1,10 @@
-# builder web assets
-from node:8-alpine
+# build web assets
+from node:8-alpine as web
 
 WORKDIR /usr/src/app
 
 COPY ./web /usr/src/app
+ENV NODE_ENV=production
 
 RUN npm install
 
@@ -14,13 +15,13 @@ from python:3.6.1-alpine
 
 WORKDIR /usr/src/app
 
-COPY ./requirements.txt /usr/src/app
-COPY ./gunicorn.py /usr/src/app/gunicorn.py
-COPY ./website /usr/src/app/website
-COPY ./config /usr/src/app/config
+COPY requirements.txt /usr/src/app
+COPY gunicorn.py /usr/src/app/gunicorn.py
+COPY website /usr/src/app/website
+COPY config /usr/src/app/config
 
-# include web assets
-COPY --from=0 /usr/src/app/dist/main.bundle.js /usr/src/app/website/static
+# include built web assets
+COPY --from=web /usr/src/app/dist/main.bundle.js /usr/src/app/website/static
 
 # install additional deps on top of alpine required by bcrypt and Pillow (jpeg-dev)
 # TODO: remove these deps after bcrypt installed to create smaller image
