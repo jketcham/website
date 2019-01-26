@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NavBar from './nav-bar';
-import { appContainer } from './root.css';
+import './root.module.css';
 
 
 const Root = ({ children }) => (
-  <div className={appContainer}>
+  <div styleName="container">
     <NavBar />
     {children}
   </div>
@@ -15,6 +15,5 @@ const Root = ({ children }) => (
 Root.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
 
 export default Root;

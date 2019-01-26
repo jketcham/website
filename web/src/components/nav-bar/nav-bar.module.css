@@ -1,4 +1,4 @@
-.navBar {
+.nav-bar {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,18 +13,18 @@
   z-index: 1000;
 }
 
-.navBarHeader {
+.nav-bar-header {
   display: inline-block;
   margin: 0 1em 0;
   font-style: italic;
 }
 
-.navBar a {
+.nav-bar a {
   color: white;
   text-decoration: none;
 }
 
-.navBarList {
+.nav-bar-list {
   display: inline-block;
   float: left;
   margin: 0 0.5em;
@@ -32,11 +32,11 @@
   list-style: none;
 }
 
-.navBarList li {
+.nav-bar-list li {
   float: left;
 }
 
-.navBarList a {
+.nav-bar-list a {
   margin: 0 0.5em;
 }
 
@@ -44,6 +44,6 @@
   background-color: white;
 }
 
-.active a {
+.nav-bar-list[data-active="true"] a {
   color: black;
 }

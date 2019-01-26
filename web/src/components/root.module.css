@@ -1,4 +1,4 @@
-:local .appContainer {
+.container {
   position: relative;
   top: 24px;
 }

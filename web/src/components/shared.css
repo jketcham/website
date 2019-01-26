@@ -1,8 +1,8 @@
-.link {
+a {
   color: black;
 }
 
-.link:visited {
+a:visited {
   color: black;
 }
 
