@@ -1,5 +1,6 @@
-const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack');
+const path = require('path');
 
 if (typeof process.env.NODE_ENV === 'undefined') {
   process.env.NODE_ENV = 'development';
@@ -10,29 +11,32 @@ const isDev = process.env.NODE_ENV === 'development';
 const config = {
   devtool: 'cheap-module-eval-source-map',
 
-  entry: ['./src/index.js'],
+  entry: [path.resolve(__dirname, './src/index.js')],
+
+  context: path.resolve(__dirname, 'src'),
 
   mode: process.env.NODE_ENV,
 
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          { loader: 'style-loader', options: { sourceMap: isDev }},
-          { loader: 'css-loader', options: { modules: true, minimize: !isDev }},
-        ],
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
+          { loader: 'babel-loader' },
+          { loader: 'eslint-loader' },
+        ],
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
           {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'eslint-loader',
-            options: { configFile: path.resolve(__dirname, '.eslintrc') },
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]__[hash:base64:5]',
+            },
           },
         ],
       },
@@ -52,10 +56,10 @@ const config = {
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx'],
     modules: [
-      path.resolve('src'),
       'node_modules',
+      path.resolve(__dirname, 'src'),
     ],
   },
 
@@ -71,10 +75,10 @@ const config = {
     host: '0.0.0.0',
     hot: true,
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    }
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    },
   },
 };
 

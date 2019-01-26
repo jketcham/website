@@ -3,6 +3,13 @@
   "plugins": [
     "@babel/plugin-transform-react-jsx",
     "@babel/transform-runtime",
-    "@babel/plugin-proposal-optional-chaining"
+    "@babel/plugin-proposal-optional-chaining",
+    ["react-css-modules", {
+      "exclude": "^(?!.*module).+\\.(css)$",
+      "generateScopedName": "[local]__[hash:base64:5]",
+      "context": "src",
+      "webpackHotModuleReloading": true,
+    }],
+    "react-hot-loader/babel",
   ]
 }

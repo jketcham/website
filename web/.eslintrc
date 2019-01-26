@@ -4,13 +4,6 @@
   "env": {
     "browser": true
   },
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "webpack.config.js"
-      }
-    }
-  },
   "rules": {
     "function-paren-newline": "off",
     "class-methods-use-this": "off",
