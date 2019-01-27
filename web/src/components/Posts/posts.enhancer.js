@@ -31,7 +31,7 @@ const enhance = compose(
     renderNothing,
   ),
   branch(
-    ({ posts }) => posts === [],
+    ({ posts }) => posts.length === 0,
     renderComponent(Empty),
   ),
 );

@@ -31,7 +31,7 @@ const enhance = compose(
     renderNothing,
   ),
   branch(
-    ({ photos }) => photos === [],
+    ({ photos }) => photos.length === 0,
     renderComponent(Empty),
   ),
 );
