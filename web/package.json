@@ -1,7 +1,11 @@
 {
   "name": "website",
   "version": "0.0.1",
-  "description": "",
+  "description": "Jack Ketcham's personal website.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jketcham/website"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server"
