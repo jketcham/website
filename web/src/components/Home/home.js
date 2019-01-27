@@ -13,7 +13,10 @@ const HomePage = () => (
       <p>
         Please feel free to get in touch with me! My email is
         {' '}
-        <a href="mailto:jack@jackketcham.com">
+        <a
+          href="mailto:jack@jackketcham.com"
+          title="no spam tho"
+        >
           jack@jackketcham.com
         </a>
         .

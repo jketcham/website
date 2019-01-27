@@ -1,12 +1,13 @@
 .container {
   position: relative;
   top: 2em;
+  height: calc(100% - 2em);
 }
 
 html, body {
   height: 100%;
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 body {
