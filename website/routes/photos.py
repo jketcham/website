@@ -22,6 +22,7 @@ class PhotoResource(object):
         # result = photo_schema.dump(photo)
 
         # resp.body = json.dumps(result.data)
+        resp.cache_control = 'max-age=315360000, public, immutable'
         resp.data = photo.image.read()
         resp.content_type = 'image/jpeg'
 
