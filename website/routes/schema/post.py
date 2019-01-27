@@ -10,6 +10,7 @@ class PostSchema(Schema):
     title = fields.String()
     content = fields.String()
     post_type = fields.String()
+    tags = fields.List(fields.String())
 
     views = fields.Number()
     public = fields.Bool()
