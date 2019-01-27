@@ -4,9 +4,11 @@ from node:10-alpine as web
 WORKDIR /usr/src/app
 
 COPY ./web /usr/src/app
-ENV NODE_ENV=production
 
 RUN npm install
+
+# set env to production after installing dependencies
+ENV NODE_ENV=production
 
 RUN node_modules/.bin/webpack
 
