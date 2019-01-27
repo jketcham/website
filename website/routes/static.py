@@ -32,7 +32,7 @@ def pass_to_frontend(req, resp):
         resource = io.open('website{}'.format(req.path), 'r').read()
         name = req.path.split('/static/')[1]
 
-        resp.cache_control = 'max-age=315360000, public, immutable'
+        resp.cache_control = ['max-age=315360000', 'public', 'immutable']
         resp.content_type = mimetypes.guess_type(name)[0]
         resp.body = resource
         return
