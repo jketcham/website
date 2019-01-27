@@ -8,14 +8,19 @@ const PostsPage = ({ posts }) => (
   <div styleName="page">
     {posts.map(post => (
       <div styleName="postItem" key={post.id}>
-        <span>
-          {moment(post.published).format('ll')}
-        </span>
-        <h4>
-          <a href={`/blog/${post.slug}`}>
-            {post.title}
-          </a>
-        </h4>
+        <header>
+          <time dateTime={post.published}>
+            {moment(post.published).format('ll')}
+          </time>
+          <h4>
+            <a href={`/blog/${post.slug}`}>
+              {post.title}
+            </a>
+          </h4>
+          <ul styleName="tags">
+            {post.tags.map(tag => <li key={tag}>{tag}</li>)}
+          </ul>
+        </header>
         <p>
           {post.content.slice(0, 180)}
           ...

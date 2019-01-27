@@ -1,22 +1,59 @@
 .page {
+  height: 100%;
+  margin: 0 0.7em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-.page ul {
+.page h1 {
+  line-height: 1;
+  margin: 0;
+  font-size: 50vw;
+}
+
+.page h5 {
+  margin-bottom: 1em;
+}
+
+.intro {
+  position: relative;
+  max-width: 75vw;
+}
+
+.links {
+  max-width: 60%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.links ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.page li {
-  padding: 0;
+.links li {
+  padding: 0 0 1em;
   margin: 0;
 }
 
-.page h1 {
+.about-list {
+  list-style: none;
   margin: 0;
-  font-size: 50vw;
+  padding: 0;
+}
+
+.about-list li + li {
+  margin-top: 1em;
+}
+
+.secondary-text {
+  color: gray;
+}
+
+.primary-text {
+  color: black;
 }

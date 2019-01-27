@@ -3,19 +3,18 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 28px;
-  padding: 0 8px;
+  height: 2em;
   display: flex;
   flex-direction: row;
   background-color: black;
   color: white;
-  line-height: 28px;
+  line-height: 2em;
   z-index: 1000;
 }
 
 .nav-bar-header {
   display: inline-block;
-  margin: 0 1em 0;
+  margin: 0 0.7em 0;
   font-style: italic;
 }
 
