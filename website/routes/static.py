@@ -30,6 +30,7 @@ def get_initial_state(context):
 def pass_to_frontend(req, resp):
     if '/static/' in req.path:
         resource = io.open('website{}'.format(req.path), 'r').read()
+        name = req.path.split('/static/')[1]
 
         resp.content_type = mimetypes.guess_type(name)[0]
         resp.body = resource
