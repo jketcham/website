@@ -15,7 +15,6 @@
   "dependencies": {
     "babel-plugin-react-css-modules": "^5.0.0",
     "history": "^4.7.2",
-    "moment": "^2.22.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

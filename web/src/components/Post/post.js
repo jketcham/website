@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import './post.module.css';
 
@@ -13,7 +12,7 @@ const Post = ({ post }) => (
         </h2>
       </div>
       <div styleName="post-date">
-        {moment(post.published).format('ll')}
+        {new Date(post.published).toDateString()}
       </div>
     </header>
     <p>

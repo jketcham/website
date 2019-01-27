@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import './posts.module.css';
 
@@ -10,7 +9,7 @@ const PostsPage = ({ posts }) => (
       <div styleName="postItem" key={post.id}>
         <header>
           <time dateTime={post.published}>
-            {moment(post.published).format('ll')}
+            {new Date(post.published).toDateString()}
           </time>
           <h4>
             <a href={`/blog/${post.slug}`}>
