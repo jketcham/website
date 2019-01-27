@@ -1,6 +1,8 @@
-from node:8.11.1-alpine
+from node:10-alpine
 
 WORKDIR /usr/src/app
+
+ENV NODE_ENV=development
 
 RUN npm install @babel/runtime && npm install
 
