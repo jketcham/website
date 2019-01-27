@@ -1,5 +1,6 @@
 import io
 import os
+import mimetypes
 
 import falcon
 import jinja2
@@ -30,6 +31,7 @@ def pass_to_frontend(req, resp):
     if '/static/' in req.path:
         resource = io.open('website{}'.format(req.path), 'r').read()
 
+        resp.content_type = mimetypes.guess_type(name)[0]
         resp.body = resource
         return
 
