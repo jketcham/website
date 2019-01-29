@@ -39,7 +39,8 @@ const HomePage = () => (
           <li>
             <a
               href="https://github.com/jketcham"
-              rel="me"
+              rel="me noopener noreferrer"
+              target="_blank"
             >
               GitHub
             </a>
@@ -47,7 +48,8 @@ const HomePage = () => (
           <li>
             <a
               href="https://twitter.com/_jket"
-              rel="me"
+              rel="me noopener noreferrer"
+              target="_blank"
             >
               Twitter
             </a>
@@ -55,7 +57,8 @@ const HomePage = () => (
           <li>
             <a
               href="https://flickr.com/photos/jackketcham"
-              rel="me"
+              rel="me noopener noreferrer"
+              target="_blank"
             >
               Flickr
             </a>
@@ -63,7 +66,8 @@ const HomePage = () => (
           <li>
             <a
               href="https://www.openstreetmap.org/user/_jket"
-              rel="me"
+              rel="me noopener noreferrer"
+              target="_blank"
             >
               OpenStreetMap
             </a>
@@ -71,7 +75,8 @@ const HomePage = () => (
           <li>
             <a
               href="musicbrainz.org/user/jket"
-              rel="me"
+              rel="me noopener noreferrer"
+              target="_blank"
             >
               MusicBrainz
             </a>
