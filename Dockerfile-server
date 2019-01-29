@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENV ENV=dev
+ENV PYTHONUNBUFFERED=true
 
 EXPOSE 8000
 
