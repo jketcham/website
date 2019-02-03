@@ -45,7 +45,7 @@ class MicroformatObject(object):
         self.name = data.get('name')
         self.content = data['content']
         self.author = data.get('author')
-        self.category = data.get('category')
+        self.category = data.get('category[]')
         self.location = data.get('location')
         self.syndication = data.get('syndication')
         self.published = data.get('published', datetime.datetime.now())
@@ -57,6 +57,8 @@ class MicropubResource(object):
 
     @falcon.before(validate_content_type)
     def on_post(self, req, resp):
+        print(req.params)
+
         if not req.auth:
             raise falcon.falcon.HTTPUnauthorized
 
@@ -72,9 +74,8 @@ class MicropubResource(object):
         try:
             content = MicroformatObject(req.params)
         except Exception as error:
+            print('bad post', error)
             raise falcon.HTTPBadRequest(description='Bad post')
-
-        print(req.params)
 
         post = Post(**vars(content))
         post.slug = req.get_param('mp-slug')

@@ -19,6 +19,11 @@ const PostsPage = ({ posts }) => (
           <ul styleName="tags">
             {post.category.map(cat => <li key={cat}>{cat}</li>)}
           </ul>
+          {post.location && (
+            <div>
+              {post.location}
+            </div>
+          )}
         </header>
         <p>
           {post.content.slice(0, 180)}
