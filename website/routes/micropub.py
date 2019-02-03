@@ -57,6 +57,7 @@ class MicropubResource(object):
 
     @falcon.before(validate_content_type)
     def on_post(self, req, resp):
+        print('wow!', req.auth)
         if not req.auth:
             raise falcon.falcon.HTTPUnauthorized
 
@@ -73,6 +74,8 @@ class MicropubResource(object):
             content = MicroformatObject(req.params)
         except Exception as error:
             raise falcon.HTTPBadRequest
+
+        print(content)
 
         post = Post(**vars(content))
         post.slug = req.get_param('slug')
