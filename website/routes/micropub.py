@@ -20,6 +20,7 @@ def validate_content_type(req, resp, resource, params):
 
 
 def validate_token(token):
+    # TODO move this url to some config
     url = 'https://tokens.indieauth.com/token'
     headers = {
         'Accept': 'application/json',
@@ -32,11 +33,33 @@ def validate_token(token):
         if f.getcode() != 200:
             raise falcon.HTTPBadRequest
 
+        # TODO: move this url to some config
         if res['me'] != 'https://alpha.jackketcham.com/':
             raise falcon.HTTPForbidden
 
         if 'create' not in res['scope']:
             raise falcon.HTTPForbidden
+
+
+def get_authentication_token(req):
+    if req.auth:
+        return req.auth.split(' ')[1]
+
+    if req.params.get('access_token'):
+        return req.params['access_token'].split(' ')[1]
+
+    return
+
+
+def get_request_data(req):
+    print('request data params', req.params)
+    if req.content_type == 'application/json':
+        return json.load(req.bounded_stream)
+
+    if req.content_type == 'application/x-www-form-urlencoded':
+        return req.params
+
+    return
 
 
 class MicroformatObject(object):
@@ -57,24 +80,36 @@ class MicropubResource(object):
 
     @falcon.before(validate_content_type)
     def on_post(self, req, resp):
-        print(req.params)
 
-        if not req.auth:
-            raise falcon.falcon.HTTPUnauthorized
+        # start authenticate request
+        token = get_authentication_token(req)
+
+        if not token:
+            raise falcon.falcon.HTTPBadRequest(description='Authentication token required')
 
         try:
-            validate_token(req.auth.split(' ')[1])
+            validate_token(token)
         except HTTPError as error:
             raise falcon.HTTPBadRequest(description='Could not validate token')
+
+        # end authenticate request
+
+        # get content of request (json/form)
+        data = get_request_data(req)
+
+        print('data', data)
+
+        if not data:
+            raise falcon.HTTPBadRequest(description='Content required')
 
         # TODO(jack): handle delete/undelete
         if req.params.get('action'):
             return
 
+        # create content of post
         try:
-            content = MicroformatObject(req.params)
+            content = MicroformatObject(data)
         except Exception as error:
-            print('bad post', error)
             raise falcon.HTTPBadRequest(description='Bad post')
 
         post = Post(**vars(content))
@@ -93,5 +128,5 @@ class MicropubResource(object):
 
         resp.body = json.dumps(result.data)
         resp.status = falcon.HTTP_CREATED
-        # TODO(jack): handle creating URL
+        # TODO(jack): move this url to some config
         resp.location = 'https://alpha.jackketcham.com/blog/{}'.format(post.slug)
