@@ -42,7 +42,7 @@ def validate_token(token):
 class MicroformatObject(object):
     def __init__(self, data):
         self.type = data.get('h', 'entry')
-        self.name = data['name']
+        self.name = data.get('name')
         self.content = data['content']
         self.author = data.get('author')
         self.category = data.get('category')

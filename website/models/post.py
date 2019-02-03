@@ -22,7 +22,7 @@ class Post(Document):
         ],
     }
 
-    name = StringField(required=True)
+    name = StringField()
     slug = StringField(required=True, unique=True)
     content = StringField(required=True)
     type = StringField(required=True, default='entry')
@@ -34,7 +34,7 @@ class Post(Document):
     public = BooleanField(default=False)
     deleted = BooleanField(default=False)
 
-    published = DateTimeField(required=True)
-    updated = DateTimeField(required=True)
+    published = DateTimeField()
+    updated = DateTimeField()
 
     author = EmbeddedDocumentField(EmbeddedPerson)
