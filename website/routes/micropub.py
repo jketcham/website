@@ -28,14 +28,15 @@ def validate_token(token):
     req = urllib.request.Request(url=url, headers=headers)
     with urllib.request.urlopen(req) as f:
         res = json.loads(f.read().decode('utf-8'))
+        print('response', res, headers, token)
 
         if f.getcode() != 200:
             raise falcon.HTTPBadRequest
 
-        if res['me'] != 'https://alpha.jackketcham.com':
+        if res['me'] != 'https://alpha.jackketcham.com/':
             raise falcon.HTTPForbidden
 
-        if 'post' not in res['scope']:
+        if 'create' not in res['scope']:
             raise falcon.HTTPForbidden
 
 
