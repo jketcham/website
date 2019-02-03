@@ -35,4 +35,4 @@ class Post(Document):
 
     published = DateTimeField()
     updated = DateTimeField()
-    meta = DictField()
+    post_meta = DictField()
