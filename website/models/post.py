@@ -1,14 +1,13 @@
 from mongoengine import (
-    IntField,
     BooleanField,
     DateTimeField,
+    DictField,
     Document,
     EmbeddedDocumentField,
-    StringField,
+    IntField,
     ListField,
+    StringField,
 )
-
-from .person import EmbeddedPerson
 
 
 class Post(Document):
@@ -36,5 +35,4 @@ class Post(Document):
 
     published = DateTimeField()
     updated = DateTimeField()
-
-    author = EmbeddedDocumentField(EmbeddedPerson)
+    meta = DictField()
