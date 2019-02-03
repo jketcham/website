@@ -28,7 +28,6 @@ def validate_token(token):
     req = urllib.request.Request(url=url, headers=headers)
     with urllib.request.urlopen(req) as f:
         res = json.loads(f.read().decode('utf-8'))
-        print('response', res, headers, token)
 
         if f.getcode() != 200:
             raise falcon.HTTPBadRequest
@@ -58,14 +57,13 @@ class MicropubResource(object):
 
     @falcon.before(validate_content_type)
     def on_post(self, req, resp):
-        print('wow!', req.auth)
         if not req.auth:
             raise falcon.falcon.HTTPUnauthorized
 
         try:
             validate_token(req.auth.split(' ')[1])
         except HTTPError as error:
-            raise falcon.HTTPBadRequest
+            raise falcon.HTTPBadRequest(description='Could not validate token')
 
         # TODO(jack): handle delete/undelete
         if req.params.get('action'):
@@ -74,12 +72,12 @@ class MicropubResource(object):
         try:
             content = MicroformatObject(req.params)
         except Exception as error:
-            raise falcon.HTTPBadRequest
+            raise falcon.HTTPBadRequest(description='Bad post')
 
-        print(content)
+        print(req.params)
 
         post = Post(**vars(content))
-        post.slug = req.get_param('slug')
+        post.slug = req.get_param('mp-slug')
         post.updated = datetime.datetime.now()
 
         try:
