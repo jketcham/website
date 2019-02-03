@@ -13,11 +13,11 @@ const PostsPage = ({ posts }) => (
           </time>
           <h4>
             <a href={`/blog/${post.slug}`}>
-              {post.title}
+              {post.name}
             </a>
           </h4>
           <ul styleName="tags">
-            {post.tags.map(tag => <li key={tag}>{tag}</li>)}
+            {post.category.map(cat => <li key={cat}>{cat}</li>)}
           </ul>
         </header>
         <p>

@@ -7,10 +7,12 @@ class Person(Schema):
 
 class PostSchema(Schema):
     id = fields.String()
-    title = fields.String()
+    name = fields.String()
     content = fields.String()
-    post_type = fields.String()
-    tags = fields.List(fields.String())
+    type = fields.String()
+    category = fields.List(fields.String())
+    location = fields.String()
+    syndication = fields.List(fields.String())
 
     views = fields.Number()
     public = fields.Bool()

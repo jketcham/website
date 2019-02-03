@@ -10,8 +10,6 @@ from mongoengine import (
 
 from .person import EmbeddedPerson
 
-POST_TYPE = ('blog', 'photostory')
-
 
 class Post(Document):
     meta = {
@@ -24,16 +22,18 @@ class Post(Document):
         ],
     }
 
-    title = StringField(required=True)
+    name = StringField(required=True)
     slug = StringField(required=True, unique=True)
     content = StringField(required=True)
-    post_type = StringField(required=True, choices=POST_TYPE, default='blog')
-    tags = ListField(StringField())
+    type = StringField(required=True, default='entry')
+    category = ListField(StringField())
+    location = StringField()
+    syndication = ListField(StringField())
 
     views = IntField(default=0)
     public = BooleanField(default=False)
+    deleted = BooleanField(default=False)
 
-    created = DateTimeField(required=True)
     published = DateTimeField(required=True)
     updated = DateTimeField(required=True)
 

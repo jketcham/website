@@ -8,7 +8,7 @@ const Post = ({ post }) => (
     <header>
       <div>
         <h2>
-          {post.title}
+          {post.name}
         </h2>
       </div>
       <div styleName="post-date">
