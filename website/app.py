@@ -1,7 +1,7 @@
 import falcon
 from mongoengine import connect
 
-from .routes import posts, photos, static
+from .routes import posts, photos, static, micropub
 from .config import config
 
 
@@ -9,10 +9,12 @@ def create_app(config):
     connect(config.MONGO_DB, host=config.MONGO_HOST)
 
     api = falcon.API()
+    api.req_options.auto_parse_form_urlencoded = True
     api.add_route('/api/posts', posts.PostsResource())
     api.add_route('/api/posts/{post_id}', posts.PostResource())
     api.add_route('/api/photos', photos.PhotosResource())
     api.add_route('/api/photos/{photo_id}', photos.PhotoResource())
+    api.add_route('/api/micropub', micropub.MicropubResource())
 
     # serve frontend
     api.add_sink(static.pass_to_frontend)
