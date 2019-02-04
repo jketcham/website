@@ -30,7 +30,7 @@ class Post(Document):
     syndication = ListField(StringField())
 
     views = IntField(default=0)
-    public = BooleanField(default=False)
+    status = StringField()
     deleted = BooleanField(default=False)
 
     published = DateTimeField()
