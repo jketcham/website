@@ -21,7 +21,7 @@ class PostsResource(object):
         if req.params.get('tags'):
             tags = req.params.get('tags')
             if type(tags) != list:
-                tags = list(tags)
+                tags = [tags]
             posts = posts.filter(category__all=tags)
 
         post_schema = PostSchema(many=True)
