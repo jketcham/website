@@ -1,23 +1,35 @@
-.page {
+.article {
   margin: 0 1.5em;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: calc(100% - 40px);
+}
+
+.content {
   max-width: 600px;
 }
 
-.page p {
+.article p {
   white-space: pre-wrap;
   line-height: 1.5em;
   font-size: 1.3em;
 }
 
-.page header {
+.header {
   width: 100%;
+  padding: 1em 0;
+  border-bottom: 1px solid black;
 }
 
-.post-date {
+.time {
   font-size: 1em;
   text-transform: lowercase;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.row * + * {
+  margin-left: 1em;
 }

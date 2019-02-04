@@ -2,41 +2,27 @@
   margin: 0 1em;
 }
 
-.postItem {
+.article {
   margin-top: 2em;
 }
 
-.postItem h4 {
+.article h4 {
   display: inline-block;
   margin: 0;
 }
 
-.postItem span {
+.article span {
   margin-right: 1em;
 }
 
-.postItem header > * {
+.article header > * {
   margin-top: 0.25em;
 }
 
-.postItem header * + * {
+.article header * + * {
   margin-left: 1em;
 }
 
-.tags {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  list-style: none;
-  vertical-align: bottom;
-  color: gray;
-  font-style: italic;
-}
-
-.tags li {
-  float: left;
-}
-
-.tags li + li {
-  margin-left: 0.75em;
+.article section {
+  max-width: 600px;
 }

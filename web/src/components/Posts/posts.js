@@ -1,41 +1,47 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
+import Tags from '../Tags';
 import './posts.module.css';
 
-const PostsPage = ({ posts }) => (
+const Posts = ({ posts }) => (
   <div styleName="page">
     {posts.map(post => (
-      <div styleName="postItem" key={post.id}>
+      <article className="h-entry" styleName="article" key={post.id}>
         <header>
-          <time dateTime={post.published}>
+          <time className="dt-published" dateTime={post.published}>
             {new Date(post.published).toDateString()}
           </time>
-          <h4>
-            <a href={`/blog/${post.slug}`}>
+          <h4 className="p-name">
+            <Link className="u-url" to={`/blog/${post.slug}`}>
               {post.name}
-            </a>
+            </Link>
           </h4>
-          <ul styleName="tags">
-            {post.category.map(cat => <li key={cat}>{cat}</li>)}
-          </ul>
+          <Tags items={post.category} />
           {post.location && (
-            <div>
+            <div className="p-location">
               {post.location}
             </div>
           )}
         </header>
-        <p>
-          {post.content.slice(0, 180)}
-          ...
-        </p>
-      </div>
+        <section
+          className="e-content"
+          dangerouslySetInnerHTML={{
+            __html: post.content.slice(0, post.content.indexOf('</p>')),
+          }}
+        />
+        <a href={`/blog/${post.slug}`}>
+          Read more
+        </a>
+      </article>
     ))}
   </div>
 );
 
-PostsPage.propTypes = {
+Posts.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
-export default PostsPage;
+export default Posts;
