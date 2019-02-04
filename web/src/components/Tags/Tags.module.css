@@ -1,0 +1,17 @@
+.tags {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  list-style: none;
+  vertical-align: bottom;
+  color: gray;
+  font-style: italic;
+}
+
+.tags li {
+  float: left;
+}
+
+.tags li + li {
+  margin-left: 0.75em;
+}
