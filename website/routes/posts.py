@@ -13,10 +13,16 @@ class PostsResource(object):
 
         if req.params.get('slug'):
             post = Post.objects.get(slug=req.params['slug'])
-            test = PostSchema()
-            result = test.dump(post)
+            schema = PostSchema()
+            result = schema.dump(post)
             resp.body = json.dumps(result[0])
             return
+
+        if req.params.get('tags'):
+            tags = req.params.get('tags')
+            if type(tags) != list:
+                tags = list(tags)
+            posts = posts.filter(category__all=tags)
 
         post_schema = PostSchema(many=True)
         result = post_schema.dump(posts)
