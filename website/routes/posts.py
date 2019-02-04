@@ -9,10 +9,10 @@ from .schema.post import PostSchema
 
 class PostsResource(object):
     def on_get(self, req, resp):
-        posts = Post.objects.order_by('-published')
+        posts = Post.objects(deleted=False).order_by('-published')
 
         if req.params.get('slug'):
-            post = Post.objects.get(slug=req.params['slug'])
+            post = Post.objects(deleted=False).get(slug=req.params['slug'])
             schema = PostSchema()
             result = schema.dump(post)
             resp.body = json.dumps(result[0])
