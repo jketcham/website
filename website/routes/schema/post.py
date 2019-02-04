@@ -53,5 +53,5 @@ class Microformats2JSON(PostSchema):
 class FormPostSchema(PostSchema):
     type = fields.String(load_from='h')
     content = fields.String(load_from='content[html]')
-    category = fields.String(load_from='category[]')
+    category = fields.List(fields.String(load_from='category[]'))
     slug = fields.String(load_from='mp-slug')
