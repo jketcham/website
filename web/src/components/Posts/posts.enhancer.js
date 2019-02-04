@@ -9,7 +9,7 @@ import {
 
 import Empty from '../Empty';
 
-const fetchPosts = () => fetch('/api/posts')
+const fetchPosts = queryParams => fetch(`/api/posts${queryParams}`)
   .then(response => response.json());
 
 const enhance = compose(
@@ -18,7 +18,19 @@ const enhance = compose(
   }),
   lifecycle({
     componentDidMount() {
-      fetchPosts().then(
+      fetchPosts(this.props.location.search).then(
+        ({ results: posts }) => this.setState({
+          loading: false,
+          posts,
+        }),
+      );
+    },
+    componentDidUpdate(prevProps) {
+      if (prevProps.location === this.props.location) {
+        return;
+      }
+
+      fetchPosts(this.props.location.search).then(
         ({ results: posts }) => this.setState({
           loading: false,
           posts,
