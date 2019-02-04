@@ -52,12 +52,14 @@ def get_authentication_token(req):
 def get_request_data(req):
     if req.content_type == 'application/json':
         data = json.load(req.bounded_stream)
+        print('json data', data)
         schema = Microformats2JSON()
         result = schema.load(data)
         return result.data
 
     if req.content_type == 'application/x-www-form-urlencoded':
         schema = FormPostSchema()
+        print('param', req.params)
         result = schema.load(req.params)
         return result.data
 
