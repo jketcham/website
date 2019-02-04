@@ -84,6 +84,18 @@ class MicropubResource(object):
             raise falcon.HTTPBadRequest(description='Could not validate token')
         # end authenticate request
 
+        # TODO(jack): handle delete/undelete
+        if req.params.get('action'):
+            if req.params['action'] == 'delete':
+                slug = req.params['url'].split('/')[-1]
+                post = Post.objects(slug=slug)[0]
+                if not post:
+                    raise falcon.HTTPNotFound
+
+                post.deleted = True
+                post.save()
+            return
+
         # get content of request (json/form)
         content = get_request_data(req)
 
@@ -91,10 +103,6 @@ class MicropubResource(object):
 
         if not content:
             raise falcon.HTTPBadRequest(description='Content required')
-
-        # TODO(jack): handle delete/undelete
-        if req.params.get('action'):
-            return
 
         post = Post(**content)
         post.updated = datetime.datetime.now()
