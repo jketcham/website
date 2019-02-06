@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, pre_load, pre_dump
+from marshmallow import Schema, fields, pre_load, post_dump
 
 LIST_FIELDS = ['category']
 
@@ -23,8 +23,8 @@ class PostSchema(Schema):
 
 
 class Properties(Schema):
-    content = fields.String()
-    category = fields.String()
+    content = fields.Method('get_content')
+    category = fields.List(fields.String())
     name = fields.String()
     slug = fields.String(dump_to='mp-slug')
     status = fields.String()
@@ -33,18 +33,29 @@ class Properties(Schema):
     published = fields.DateTime()
     updated = fields.DateTime()
 
+    def get_content(self, post):
+        if post.content_type == 'html':
+            return {
+                'html': post.content,
+            }
+
+        return post.content
+
 
 class TempSource(Schema):
     type = fields.String()
     properties = fields.Nested(Properties)
 
-    @pre_dump
+    @post_dump
     def wow(self, post):
-        print('dump', post)
+        post['type'] = [post['type']]
         # make everything a list
-        for key, value in post.items():
+        for key, value in post['properties'].items():
+            if value is None:
+                post['properties'][key] = []
+                continue
             if type(value) != list:
-                post[key] = [value]
+                post['properties'][key] = [value]
 
         return post
 
@@ -52,6 +63,7 @@ class TempSource(Schema):
 class Microformats2JSON(PostSchema):
     type = fields.Method(deserialize='get_type')
     content = fields.Method(deserialize='get_content')
+    content_type = fields.Method(load_from='content', deserialize='get_content_type')
     slug = fields.String(load_from='mp-slug')
 
     @pre_load
@@ -69,7 +81,15 @@ class Microformats2JSON(PostSchema):
     def get_type(self, type):
         return type[0] or 'entry'
 
+    def get_content_type(self, data):
+        if type(data) is dict:
+            if data.get('html'):
+                return 'html'
+
+        return 'plaintext'
+
     def get_content(self, data):
+        # TODO verify content is a dict with property 'html'
         if type(data) is dict:
             return next(iter(data.values()))
         return data
@@ -78,5 +98,6 @@ class Microformats2JSON(PostSchema):
 class FormPostSchema(PostSchema):
     type = fields.String(load_from='h')
     content = fields.String(load_from='content[html]')
+    content_type = fields.String(missing='html', default='html') # TODO
     category = fields.List(fields.String(load_from='category[]'))
     slug = fields.String(load_from='mp-slug')

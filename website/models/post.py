@@ -24,6 +24,7 @@ class Post(Document):
     name = StringField()
     slug = StringField(required=True, unique=True)
     content = StringField(required=True)
+    content_type = StringField()
     type = StringField(required=True, default='entry')
     category = ListField(StringField())
     location = StringField()
