@@ -1,6 +1,4 @@
-import datetime
-
-from marshmallow import Schema, fields, pre_load
+from marshmallow import Schema, fields, pre_load, pre_dump
 
 LIST_FIELDS = ['category']
 
@@ -10,18 +8,45 @@ class PostSchema(Schema):
     name = fields.String()
     slug = fields.String(required=True)
     content = fields.String()
-    type = fields.String(default='entry')
+    type = fields.String()
     category = fields.List(fields.String())
     location = fields.String()
     syndication = fields.List(fields.String())
 
-    views = fields.Number(default=0)
-    status = fields.String(default='published')
-    deleted = fields.Boolean(default=False)
+    views = fields.Number()
+    status = fields.String(missing='published')
+    deleted = fields.Boolean()
 
-    published = fields.DateTime(default=datetime.datetime.now())
+    published = fields.DateTime()
     updated = fields.DateTime()
     post_meta = fields.Dict()
+
+
+class Properties(Schema):
+    content = fields.String()
+    category = fields.String()
+    name = fields.String()
+    slug = fields.String(dump_to='mp-slug')
+    status = fields.String()
+    location = fields.String()
+    syndication = fields.List(fields.String())
+    published = fields.DateTime()
+    updated = fields.DateTime()
+
+
+class TempSource(Schema):
+    type = fields.String()
+    properties = fields.Nested(Properties)
+
+    @pre_dump
+    def wow(self, post):
+        print('dump', post)
+        # make everything a list
+        for key, value in post.items():
+            if type(value) != list:
+                post[key] = [value]
+
+        return post
 
 
 class Microformats2JSON(PostSchema):

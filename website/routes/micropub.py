@@ -10,10 +10,16 @@ from website.config import config
 from website.models import Post
 from website.routes.schema.post import PostSchema, Microformats2JSON, FormPostSchema
 
+ACCEPTED_ACTION_TYPES = ['delete', 'undelete']
 ACCEPTED_CONTENT_TYPES = [
     'application/x-www-form-urlencoded',
     'application/json',
 ]
+CONTENT_TYPE_SCHEMA = {
+    'application/json': Microformats2JSON,
+    'application/x-www-form-urlencoded': FormPostSchema,
+}
+
 
 def validate_content_type(req, resp, resource, params):
     if req.content_type not in ACCEPTED_CONTENT_TYPES:
@@ -35,16 +41,20 @@ def validate_token(token):
         if res['me'] != config.HOST:
             raise falcon.HTTPForbidden
 
+        # TODO need to pass back scope info to be checked against action for
+        # each request
         if 'create' not in res['scope']:
             raise falcon.HTTPForbidden
 
 
 def get_authentication_token(req):
-    if req.auth:
-        return req.auth.split(' ')[1]
+    prefix = 'Bearer '
 
-    if req.params.get('access_token'):
-        return req.params['access_token'].split(' ')[1]
+    if req.auth and req.auth.startswith(prefix):
+        return req.auth[len(prefix):]
+
+    if req.params.get('access_token') and req.params.get('access_token').startswith(prefix):
+        return req.params['access_token'][len(prefix):]
 
     return
 
@@ -53,21 +63,33 @@ def get_request_data(req):
     if req.content_type == 'application/json':
         data = json.load(req.bounded_stream)
         print('json data', data)
-        schema = Microformats2JSON()
-        result = schema.load(data)
-        return result.data
+        return data
 
     if req.content_type == 'application/x-www-form-urlencoded':
-        schema = FormPostSchema()
         print('param', req.params)
-        result = schema.load(req.params)
-        return result.data
+        return req.params
 
     return
 
 
+def get_post_content(data, content_type):
+    schema_class = CONTENT_TYPE_SCHEMA[content_type]
+    schema = schema_class()
+    result = schema.load(data)
+    return result.data
+
+
 class MicropubResource(object):
     def on_get(self, req, resp):
+        if req.params.get('q') == 'source':
+            slug = req.params['url'].split('/')[-1]
+            post = Post.objects(slug=slug).first()
+            schema = TempSource()
+            result = schema.dump({'type': post.type, 'properties': post})
+            print('update', result.data)
+            resp.body = json.dumps(result.data)
+            return
+
         resp.body = json.dumps({})
 
     @falcon.before(validate_content_type)
@@ -84,20 +106,31 @@ class MicropubResource(object):
             raise falcon.HTTPBadRequest(description='Could not validate token')
         # end authenticate request
 
-        # TODO(jack): handle delete/undelete
-        if req.params.get('action'):
-            if req.params['action'] == 'delete':
-                slug = req.params['url'].split('/')[-1]
-                post = Post.objects(slug=slug)[0]
-                if not post:
-                    raise falcon.HTTPNotFound
+        # get content of request (json/form)
+        data = get_request_data(req)
 
+        # TODO(jack): cleanup
+        if data.get('action') in ACCEPTED_ACTION_TYPES:
+            slug = data['url'].split('/')[-1]
+            post = Post.objects(slug=slug).first()
+            if not post:
+                raise falcon.HTTPNotFound
+
+            if data['action'] == 'delete':
                 post.deleted = True
                 post.save()
+                resp.location = '{}blog'.format(config.HOST)
+                return
+
+            if data['action'] == 'undelete':
+                post.deleted = False
+                post.save()
+                resp.location = '{}blog/{}'.format(config.HOST, post.slug)
+                return
+
             return
 
-        # get content of request (json/form)
-        content = get_request_data(req)
+        content = get_post_content(data, req.content_type)
 
         print('content', content)
 
@@ -105,6 +138,10 @@ class MicropubResource(object):
             raise falcon.HTTPBadRequest(description='Content required')
 
         post = Post(**content)
+
+        if post.status == 'published':
+            post.published = datetime.datetime.now()
+
         post.updated = datetime.datetime.now()
 
         try:
