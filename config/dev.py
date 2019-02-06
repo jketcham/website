@@ -1,4 +1,4 @@
-HOST = 'http://localhost:8000'
+HOST = 'http://localhost:8000/'
 
 MONGO_DB = 'website'
 MONGO_HOST = 'mongo'
