@@ -8,7 +8,7 @@ from mongoengine import ValidationError, NotUniqueError
 
 from website.config import config
 from website.models import Post
-from website.routes.schema.post import PostSchema, Microformats2JSON, FormPostSchema
+from website.routes.schema.post import PostSchema, Microformats2JSON, FormPostSchema, TempSource
 
 ACCEPTED_ACTION_TYPES = ['delete', 'undelete']
 ACCEPTED_CONTENT_TYPES = [
