@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Tags from '../Tags';
-import './post.module.css';
+import './Post.module.css';
 
 const Post = ({ post }) => (
   <article className="h-entry" styleName="article">

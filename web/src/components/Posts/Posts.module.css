@@ -6,9 +6,9 @@
   margin-top: 2em;
 }
 
-.article h4 {
+.article :global(.p-name) {
   display: inline-block;
-  margin: 0;
+  margin: 0 0 0.5em;
 }
 
 .article span {
@@ -19,10 +19,16 @@
   margin-top: 0.25em;
 }
 
-.article header * + * {
+.article header > div * + * {
   margin-left: 1em;
 }
 
 .article section {
   max-width: 600px;
+  margin: 1em 0;
+  line-height: 1.5em;
+}
+
+.article section p:first-child {
+  margin: 0;
 }

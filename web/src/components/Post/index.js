@@ -1,4 +1,4 @@
-import Post from './post';
-import enhance from './post.enhancer';
+import Post from './Post';
+import enhance from './Post.enhancer';
 
 export default enhance(Post);
