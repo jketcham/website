@@ -13,9 +13,6 @@ const Navbar = ({ isActive }) => (
       <li data-active={isActive('/blog')}>
         <Link to="/blog">blog</Link>
       </li>
-      <li data-active={isActive('/photos')}>
-        <Link to="/photos">photos</Link>
-      </li>
     </ul>
   </div>
 );
