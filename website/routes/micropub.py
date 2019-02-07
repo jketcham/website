@@ -10,7 +10,7 @@ from website.config import config
 from website.models import Post
 from website.routes.schema.post import PostSchema, Microformats2JSON, FormPostSchema, TempSource
 
-ACCEPTED_ACTION_TYPES = ['delete', 'undelete']
+ACCEPTED_ACTION_TYPES = ['delete', 'undelete', 'update']
 ACCEPTED_CONTENT_TYPES = [
     'application/x-www-form-urlencoded',
     'application/json',
@@ -62,11 +62,9 @@ def get_authentication_token(req):
 def get_request_data(req):
     if req.content_type == 'application/json':
         data = json.load(req.bounded_stream)
-        print('json data', data)
         return data
 
     if req.content_type == 'application/x-www-form-urlencoded':
-        print('param', req.params)
         return req.params
 
     return
@@ -108,21 +106,32 @@ class MicropubResource(object):
 
         # get content of request (json/form)
         data = get_request_data(req)
+        action = data.get('action')
+
+        if action and action not in ACCEPTED_ACTION_TYPES:
+            raise falcon.HTTPBadRequest
 
         # TODO(jack): cleanup
-        if data.get('action') in ACCEPTED_ACTION_TYPES:
+        if action in ACCEPTED_ACTION_TYPES:
             slug = data['url'].split('/')[-1]
             post = Post.objects(slug=slug).first()
             if not post:
                 raise falcon.HTTPNotFound
 
-            if data['action'] == 'delete':
+            if action == 'update':
+                # TODO need to use schema here
+                post.update(**data['replace'])
+                post.reload()
+                resp.location = '{}blog/{}'.format(config.HOST, post.slug)
+                return
+
+            if action == 'delete':
                 post.deleted = True
                 post.save()
                 resp.location = '{}blog'.format(config.HOST)
                 return
 
-            if data['action'] == 'undelete':
+            if action == 'undelete':
                 post.deleted = False
                 post.save()
                 resp.location = '{}blog/{}'.format(config.HOST, post.slug)
@@ -131,8 +140,6 @@ class MicropubResource(object):
             return
 
         content = get_post_content(data, req.content_type)
-
-        print('content', content)
 
         if not content:
             raise falcon.HTTPBadRequest(description='Content required')
