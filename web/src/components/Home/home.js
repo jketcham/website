@@ -64,6 +64,15 @@ const HomePage = () => (
           </li>
           <li>
             <a
+              href="https://matrix.to/#/@jket:matrix.org"
+              rel="me noopener noreferrer"
+              target="_blank"
+            >
+                Matrix
+            </a>
+          </li>
+          <li>
+            <a
               href="https://flickr.com/photos/jackketcham"
               rel="me noopener noreferrer"
               target="_blank"
