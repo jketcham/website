@@ -4,13 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-}
-
-.page h1 {
-  line-height: 1;
-  margin: 0;
-  font-size: 50vw;
 }
 
 .page h5 {

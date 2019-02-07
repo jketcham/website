@@ -5,7 +5,6 @@ import './home.module.css';
 
 const HomePage = () => (
   <div styleName="page">
-    <h1>Hi</h1>
     <div styleName="intro">
       <p>
         I&apos;m Jack, a software engineer living in Tempe, Arizona.
@@ -17,7 +16,7 @@ const HomePage = () => (
           href="mailto:jack@jackketcham.com"
           title="no spam tho"
         >
-          jack@jackketcham.com
+            jack@jackketcham.com
         </a>
         .
       </p>
@@ -42,7 +41,7 @@ const HomePage = () => (
               rel="me noopener noreferrer"
               target="_blank"
             >
-              GitHub
+                GitHub
             </a>
           </li>
           <li>
@@ -51,7 +50,16 @@ const HomePage = () => (
               rel="me noopener noreferrer"
               target="_blank"
             >
-              Twitter
+                Twitter
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://mastodon.technology/@jket"
+              rel="me noopener noreferrer"
+              target="_blank"
+            >
+                Mastodon
             </a>
           </li>
           <li>
@@ -60,7 +68,7 @@ const HomePage = () => (
               rel="me noopener noreferrer"
               target="_blank"
             >
-              Flickr
+                Flickr
             </a>
           </li>
           <li>
@@ -69,7 +77,7 @@ const HomePage = () => (
               rel="me noopener noreferrer"
               target="_blank"
             >
-              OpenStreetMap
+                OpenStreetMap
             </a>
           </li>
           <li>
@@ -78,7 +86,7 @@ const HomePage = () => (
               rel="me noopener noreferrer"
               target="_blank"
             >
-              MusicBrainz
+                MusicBrainz
             </a>
           </li>
         </ul>
