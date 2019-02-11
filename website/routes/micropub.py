@@ -54,8 +54,8 @@ def validate_token(token):
         return res
 
 
-def check_authorization(scope, data):
-    if scope not in data['token']['scope']:
+def check_authorization(scope, token):
+    if scope not in token['scope']:
         raise falcon.HTTPNotAuthorized
 
 
@@ -89,7 +89,7 @@ class MicropubResource(Resource):
 
     @falcon.before(validate_content_type)
     @falcon.before(authenticate_request)
-    def on_post(self, req, resp):
+    def on_post(self, req, resp, token):
         data = self.get_request_data(req)
 
         action = data.get('action')
@@ -105,20 +105,20 @@ class MicropubResource(Resource):
                 raise falcon.HTTPNotFound
 
             if action == 'update':
-                check_authorization('update', data)
+                check_authorization('update', token)
                 return self.handle_update(resp, post, data)
 
             if action == 'delete':
-                check_authorization('delete', data)
+                check_authorization('delete', token)
                 return self.handle_delete(resp, post)
 
             if action == 'undelete':
-                check_authorization('undelete', data)
+                check_authorization('undelete', token)
                 return self.handle_undelete(resp, post)
 
             raise falcon.HTTPBadRequest
 
-        check_authorization('create', data)
+        check_authorization('create', token)
 
         return self.handle_create(req, resp, data)
 
