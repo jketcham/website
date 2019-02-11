@@ -23,7 +23,7 @@ COPY website /usr/src/app/website
 COPY config /usr/src/app/config
 
 # include built web assets
-COPY --from=web /usr/src/app/dist/main.bundle.js /usr/src/app/website/static
+COPY --from=web /usr/src/app/dist /usr/src/app/website/static
 
 # install additional deps on top of alpine required by bcrypt and Pillow (jpeg-dev)
 # TODO: remove these deps after bcrypt installed to create smaller image

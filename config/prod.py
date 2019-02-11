@@ -1,5 +1,6 @@
 HOST = 'https://alpha.jackketcham.com/'
 
+STATIC_DIR = '../static/'
 MONGO_DB = 'website'
 MONGO_HOST = 'mongo'
 

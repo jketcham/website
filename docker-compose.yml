@@ -16,6 +16,7 @@ services:
       dockerfile: Dockerfile-server
     volumes:
       - .:/usr/src/app
+      - ./web:/usr/src/app/web
     restart: unless-stopped
     depends_on:
       - mongo
