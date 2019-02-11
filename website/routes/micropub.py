@@ -7,18 +7,28 @@ import falcon
 from mongoengine import ValidationError, NotUniqueError
 
 from website.config import config
-from website.models import Post
-from website.routes.schema.post import PostSchema, Microformats2JSON, FormPostSchema, TempSource
+from website.models.post import Post, PostStatus
+from website.helpers.auth import get_authentication_token
+from website.routes.resource import Resource
+from .schema.micropub import JSONSchema, FormSchema
+from website.routes.schema.post import (
+    PostSchema,
+    PostSource,
+)
 
 ACCEPTED_ACTION_TYPES = ['delete', 'undelete', 'update']
 ACCEPTED_CONTENT_TYPES = [
-    'application/x-www-form-urlencoded',
     'application/json',
+    'application/x-www-form-urlencoded',
 ]
 CONTENT_TYPE_SCHEMA = {
-    'application/json': Microformats2JSON,
-    'application/x-www-form-urlencoded': FormPostSchema,
+    'application/json': JSONSchema,
+    'application/x-www-form-urlencoded': FormSchema,
 }
+
+
+def get_slug(url):
+    return url.split('/')[-1]
 
 
 def validate_content_type(req, resp, resource, params):
@@ -41,112 +51,103 @@ def validate_token(token):
         if res['me'] != config.HOST:
             raise falcon.HTTPForbidden
 
-        # TODO need to pass back scope info to be checked against action for
-        # each request
-        if 'create' not in res['scope']:
-            raise falcon.HTTPForbidden
+        return res
 
 
-def get_authentication_token(req):
-    prefix = 'Bearer '
-
-    if req.auth and req.auth.startswith(prefix):
-        return req.auth[len(prefix):]
-
-    if req.params.get('access_token') and req.params.get('access_token').startswith(prefix):
-        return req.params['access_token'][len(prefix):]
-
-    return
+def check_authorization(scope, data):
+    if scope not in data['token']['scope']:
+        raise falcon.HTTPNotAuthorized
 
 
-def get_request_data(req):
-    if req.content_type == 'application/json':
-        data = json.load(req.bounded_stream)
-        return data
+def authenticate_request(req, resp, resource, params):
+    token = get_authentication_token(req)
 
-    if req.content_type == 'application/x-www-form-urlencoded':
-        return req.params
+    if not token:
+        raise falcon.falcon.HTTPBadRequest(description='Authentication token required')
 
-    return
+    try:
+        token_data = validate_token(token)
+    except HTTPError as error:
+        raise falcon.HTTPBadRequest(description='Could not validate token')
 
-
-def get_post_content(data, content_type):
-    schema_class = CONTENT_TYPE_SCHEMA[content_type]
-    schema = schema_class()
-    result = schema.load(data)
-    return result.data
+    params['token'] = token_data
 
 
-class MicropubResource(object):
+class MicropubResource(Resource):
+    schema_classes = CONTENT_TYPE_SCHEMA
+
     def on_get(self, req, resp):
         if req.params.get('q') == 'source':
-            slug = req.params['url'].split('/')[-1]
+            slug = get_slug(req.params['url'])
             post = Post.objects(slug=slug).first()
-            schema = TempSource()
+            schema = PostSource()
             result = schema.dump({'type': post.type, 'properties': post})
-            print('update', result.data)
             resp.body = json.dumps(result.data)
             return
 
         resp.body = json.dumps({})
 
     @falcon.before(validate_content_type)
+    @falcon.before(authenticate_request)
     def on_post(self, req, resp):
-        # start authenticate request
-        token = get_authentication_token(req)
+        data = self.get_request_data(req)
 
-        if not token:
-            raise falcon.falcon.HTTPBadRequest(description='Authentication token required')
-
-        try:
-            validate_token(token)
-        except HTTPError as error:
-            raise falcon.HTTPBadRequest(description='Could not validate token')
-        # end authenticate request
-
-        # get content of request (json/form)
-        data = get_request_data(req)
         action = data.get('action')
 
         if action and action not in ACCEPTED_ACTION_TYPES:
             raise falcon.HTTPBadRequest
 
-        # TODO(jack): cleanup
-        if action in ACCEPTED_ACTION_TYPES:
-            slug = data['url'].split('/')[-1]
+        if action:
+            slug = get_slug(data['url'])
             post = Post.objects(slug=slug).first()
+
             if not post:
                 raise falcon.HTTPNotFound
 
             if action == 'update':
-                # TODO need to use schema here
-                post.update(**data['replace'])
-                post.reload()
-                resp.location = '{}blog/{}'.format(config.HOST, post.slug)
-                return
+                check_authorization('update', data)
+                return self.handle_update(resp, post, data)
 
             if action == 'delete':
-                post.deleted = True
-                post.save()
-                resp.location = '{}blog'.format(config.HOST)
-                return
+                check_authorization('delete', data)
+                return self.handle_delete(resp, post)
 
             if action == 'undelete':
-                post.deleted = False
-                post.save()
-                resp.location = '{}blog/{}'.format(config.HOST, post.slug)
-                return
+                check_authorization('undelete', data)
+                return self.handle_undelete(resp, post)
 
-            return
+            raise falcon.HTTPBadRequest
 
-        content = get_post_content(data, req.content_type)
+        check_authorization('create', data)
+
+        return self.handle_create(req, resp, data)
+
+    def handle_delete(self, resp, post):
+        post.deleted = True
+        post.save()
+        resp.location = '{}blog'.format(config.HOST)
+
+    def handle_undelete(self, resp, post):
+        post.deleted = False
+        post.save()
+        resp.location = '{}blog/{}'.format(config.HOST, post.slug)
+
+    def handle_update(self, resp, post, data):
+        # TODO need to use schema here
+        post.update(**data['replace'])
+        post.reload()
+        resp.location = '{}blog/{}'.format(config.HOST, post.slug)
+
+    def handle_create(self, req, resp, data):
+        schema = self.get_schema(req)
+        content = schema.load(data).data
 
         if not content:
             raise falcon.HTTPBadRequest(description='Content required')
 
         post = Post(**content)
 
-        if post.status == 'published':
+        if post.status == PostStatus.published:
             post.published = datetime.datetime.now()
 
         post.updated = datetime.datetime.now()
@@ -158,8 +159,8 @@ class MicropubResource(object):
         except NotUniqueError as error:
             raise falcon.HTTPBadRequest('Duplicate', str(error))
 
-        schema = PostSchema()
-        result = schema.dump(post)
+        post_schema = PostSchema()
+        result = post_schema.dump(post)
 
         resp.body = json.dumps(result.data)
         resp.status = falcon.HTTP_CREATED
