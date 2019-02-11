@@ -7,6 +7,7 @@ from mongoengine import (
     IntField,
     ListField,
     StringField,
+    queryset_manager,
 )
 
 
@@ -37,3 +38,7 @@ class Post(Document):
     published = DateTimeField()
     updated = DateTimeField()
     post_meta = DictField()
+
+    @queryset_manager
+    def live_posts(self, queryset):
+        return queryset.filter(deleted=False, status=PostStatus.published)

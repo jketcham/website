@@ -10,13 +10,13 @@ from .schema.post import PostSchema
 class PostsResource(object):
     def on_get(self, req, resp):
         if req.params.get('slug'):
-            post = Post.objects(deleted=False).get(slug=req.params['slug'])
+            post = Post.live_posts().get(slug=req.params['slug'])
             schema = PostSchema()
             result = schema.dump(post)
             resp.body = json.dumps(result[0])
             return
 
-        posts = Post.objects(deleted=False).order_by('-published')
+        posts = Post.live_posts().order_by('-published')
 
         if req.params.get('tags'):
             tags = req.params.get('tags')
@@ -32,7 +32,7 @@ class PostsResource(object):
 
 class PostResource(object):
     def on_get(self, req, resp, post_id):
-        post = Post.objects(id=post_id).first()
+        post = Post.live_posts(id=post_id).first()
 
         if post is None:
             raise falcon.HTTP_NOT_FOUND()
