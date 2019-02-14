@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import AppUrl from '../../urls';
+import BaseUrl from '../../urls';
 import Tags from '../Tags';
 import './ListItem.module.css';
 
@@ -44,7 +44,7 @@ const ListItem = ({
 ListItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  url: PropTypes.instanceOf(AppUrl).isRequired,
+  url: PropTypes.instanceOf(BaseUrl).isRequired,
   ItemsUrl: PropTypes.func.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   category: PropTypes.array.isRequired,
