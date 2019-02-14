@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 import './Tags.module.css';
 
-const Tags = ({ items }) => (
+const Tags = ({ items, Url }) => (
   <ul styleName="tags">
     {items.map(tag => (
       <li key={tag}>
-        <Link rel="tag" className="p-category" to={`/blog?tags=${tag}`}>
+        <Link rel="tag" className="p-category" to={new Url({ tags: tag }).serialize()}>
           {tag}
         </Link>
       </li>
@@ -18,6 +18,7 @@ const Tags = ({ items }) => (
 
 Tags.propTypes = {
   items: PropTypes.array.isRequired,
+  Url: PropTypes.func.isRequired,
 };
 
 export default Tags;
