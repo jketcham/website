@@ -22,7 +22,7 @@ const ListItem = ({
           {name}
         </Link>
       </h3>
-      <div>
+      <div styleName="meta">
         <time
           className="dt-published"
           dateTime={date}

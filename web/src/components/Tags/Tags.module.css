@@ -4,8 +4,6 @@
   display: inline-block;
   list-style: none;
   vertical-align: bottom;
-  color: gray;
-  font-style: italic;
 }
 
 .tags li {
@@ -13,5 +11,5 @@
 }
 
 .tags li + li {
-  margin-left: 0.75em;
+  margin-left: 0.5em;
 }

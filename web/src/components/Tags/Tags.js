@@ -8,7 +8,12 @@ const Tags = ({ items, Url }) => (
   <ul styleName="tags">
     {items.map(tag => (
       <li key={tag}>
-        <Link rel="tag" className="p-category" to={new Url({ tags: tag }).serialize()}>
+        <Link
+          rel="tag"
+          className="p-category"
+          to={new Url({ tags: tag }).serialize()}
+        >
+          #
           {tag}
         </Link>
       </li>

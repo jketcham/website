@@ -24,6 +24,13 @@ body {
 
 a {
   color: black;
+  transition: 0.15s;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: black;
+  color: white;
 }
 
 :global(#root) {

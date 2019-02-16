@@ -1,16 +1,17 @@
 /* eslint-disable max-len */
 import React from 'react';
 
+import Page from '../Page';
 import './home.module.css';
 
 const HomePage = () => (
-  <div styleName="page">
+  <Page styleName="page">
     <div styleName="intro">
       <p>
         I&apos;m Jack, a software engineer living in Tempe, Arizona.
       </p>
       <p>
-        Please feel free to get in touch with me! My email is
+        Feel free to get in touch with me! My email is
         {' '}
         <a
           href="mailto:jack@jackketcham.com"
@@ -101,7 +102,7 @@ const HomePage = () => (
         </ul>
       </div>
     </div>
-  </div>
+  </Page>
 );
 
 export default HomePage;

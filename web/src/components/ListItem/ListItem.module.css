@@ -28,3 +28,12 @@
 .article section p:first-child {
   margin: 0;
 }
+
+.meta,
+.meta a {
+  color: gray;
+}
+
+.meta a:hover {
+  color: white;
+}
