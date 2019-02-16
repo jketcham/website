@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import BaseURL from '../../urls';
-import Tags from '../Tags';
+import Meta from '../Meta';
 import './ListItem.module.css';
 
 const ListItem = ({
   id,
   url,
   name,
-  date,
-  location,
+  published,
   category,
-  ItemsUrl,
+  ItemsURL,
 }) => (
   <article className="h-entry" styleName="article" key={id}>
     <header>
@@ -22,21 +21,7 @@ const ListItem = ({
           {name}
         </Link>
       </h3>
-      <div styleName="meta">
-        <time
-          className="dt-published"
-          dateTime={date}
-          title={date.toISOString()}
-        >
-          {date.toDateString()}
-        </time>
-        <Tags items={category} AppURL={ItemsUrl} />
-        {location && (
-          <div className="p-location">
-            {location}
-          </div>
-        )}
-      </div>
+      <Meta item={{ published, category }} AppURL={ItemsURL} />
     </header>
   </article>
 );
@@ -44,15 +29,10 @@ const ListItem = ({
 ListItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  published: PropTypes.string.isRequired,
   url: PropTypes.instanceOf(BaseURL).isRequired,
-  ItemsUrl: PropTypes.func.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
+  ItemsURL: PropTypes.func.isRequired,
   category: PropTypes.array.isRequired,
-  location: PropTypes.string,
-};
-
-ListItem.defaultProps = {
-  location: '',
 };
 
 export default ListItem;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PostsURL from '../../urls/PostsURL';
 import Page from '../Page';
-import Tags from '../Tags';
+import Meta from '../Meta';
 import './Post.module.css';
 
 const Post = ({ post }) => (
@@ -14,16 +14,7 @@ const Post = ({ post }) => (
         <h1 className="p-name">
           {post.name}
         </h1>
-        <div styleName="row">
-          <time
-            dateTime={post.published}
-            className="dt-published"
-            styleName="time"
-          >
-            {new Date(post.published).toDateString()}
-          </time>
-          <Tags items={post.category} AppURL={PostsURL} />
-        </div>
+        <Meta item={post} AppURL={PostsURL} />
       </header>
       <section
         className="e-content"

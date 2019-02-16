@@ -11,14 +11,6 @@
   margin-right: 1em;
 }
 
-.article header > * {
-  margin-top: 0.25em;
-}
-
-.article header > div * + * {
-  margin-left: 1em;
-}
-
 .article section {
   max-width: 600px;
   margin: 1em 0;
@@ -27,13 +19,4 @@
 
 .article section p:first-child {
   margin: 0;
-}
-
-.meta,
-.meta a {
-  color: gray;
-}
-
-.meta a:hover {
-  color: white;
 }

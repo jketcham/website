@@ -25,16 +25,3 @@
   margin-top: 0;
   font-style: italic;
 }
-
-.time {
-  font-size: 1em;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.row * + * {
-  margin-left: 1em;
-}
