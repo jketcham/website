@@ -1,7 +1,7 @@
 import falcon
 from mongoengine import connect
 
-from .routes import posts, photos, static, micropub
+from .routes import posts, photos, static, micropub, tags
 from .config import config
 
 
@@ -10,6 +10,7 @@ def create_app(config):
 
     api = falcon.API()
     api.req_options.auto_parse_form_urlencoded = True
+    api.add_route('/api/tags', tags.TagsResource())
     api.add_route('/api/posts', posts.PostsResource())
     api.add_route('/api/posts/{post_id}', posts.PostResource())
     api.add_route('/api/photos', photos.PhotosResource())

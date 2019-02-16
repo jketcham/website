@@ -35,6 +35,7 @@ class Post(Document):
                 'fields': ['slug'],
                 'unique': True,
             },
+            'category',
         ],
     }
 
