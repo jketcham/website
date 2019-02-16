@@ -1,10 +1,10 @@
-import BaseUrl from './BaseUrl';
+import BaseURL from './BaseURL';
 
 const params = {
   slug: String,
 };
 
-export default class PostUrl extends BaseUrl {
+export default class PostURL extends BaseURL {
   constructor(input) {
     super(input, '/blog/{slug}', params);
   }

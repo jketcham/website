@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import BaseUrl from '../../urls';
+import BaseURL from '../../urls';
 import Tags from '../Tags';
 import './ListItem.module.css';
 
@@ -30,7 +30,7 @@ const ListItem = ({
         >
           {date.toDateString()}
         </time>
-        <Tags items={category} Url={ItemsUrl} />
+        <Tags items={category} AppURL={ItemsUrl} />
         {location && (
           <div className="p-location">
             {location}
@@ -44,7 +44,7 @@ const ListItem = ({
 ListItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  url: PropTypes.instanceOf(BaseUrl).isRequired,
+  url: PropTypes.instanceOf(BaseURL).isRequired,
   ItemsUrl: PropTypes.func.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   category: PropTypes.array.isRequired,

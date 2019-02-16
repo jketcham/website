@@ -1,3 +1,3 @@
-import BaseUrl from './BaseUrl';
+import BaseURL from './BaseURL';
 
-export default BaseUrl;
+export default BaseURL;

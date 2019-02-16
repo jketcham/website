@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PostsUrl from '../../urls/PostsUrl';
+import PostsURL from '../../urls/PostsURL';
 import Page from '../Page';
 import Tags from '../Tags';
 import './Post.module.css';
@@ -22,7 +22,7 @@ const Post = ({ post }) => (
           >
             {new Date(post.published).toDateString()}
           </time>
-          <Tags items={post.category} Url={PostsUrl} />
+          <Tags items={post.category} AppURL={PostsURL} />
         </div>
       </header>
       <section

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import PostsUrl from '../../urls/PostsUrl';
+import PostsURL from '../../urls/PostsURL';
 import './nav-bar.module.css';
 
 const Navbar = ({ isActive }) => (
@@ -14,7 +14,7 @@ const Navbar = ({ isActive }) => (
     </h3>
     <ul styleName="nav-bar-list">
       <li data-active={isActive('/blog')}>
-        <Link to={new PostsUrl().serialize()}>
+        <Link to={new PostsURL().serialize()}>
           blog
         </Link>
       </li>
