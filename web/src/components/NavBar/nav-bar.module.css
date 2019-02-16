@@ -3,8 +3,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 2em;
   display: flex;
+  padding: 0.2em 5vw;
   flex-direction: row;
   background-color: black;
   color: white;
@@ -12,9 +12,12 @@
   z-index: 1000;
 }
 
+.nav-bar h3 {
+  margin: 0;
+}
+
 .nav-bar-header {
   display: inline-block;
-  margin: 0 0.7em 0;
   font-style: italic;
 }
 
