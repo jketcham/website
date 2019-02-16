@@ -1,0 +1,21 @@
+.tags {
+  text-align: right;
+  color: gray;
+}
+
+.tags a {
+  color: gray;
+}
+
+.tags:hover,
+.tags:hover a {
+  color: black;
+}
+
+.tags:hover a:hover {
+  color: white;
+}
+
+.tags section h2 {
+  margin-top: 0;
+}

@@ -5,3 +5,8 @@
 .posts > article:first-child {
   margin-top: 0;
 }
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
