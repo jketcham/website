@@ -16,6 +16,11 @@
   margin: 0;
 }
 
+.nav-bar h3:hover,
+.nav-bar li:hover {
+  transform: scale(1, -1);
+}
+
 .nav-bar-header {
   display: inline-block;
   font-style: italic;
