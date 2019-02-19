@@ -1,6 +1,6 @@
 # website
 
-This is my personal website, built using the python [falcon](https://falconframework.org/) web API framework and [React](https://reactjs.org/) JavaScript library. Blog posts and other content are managed through a [Micropub](https://indieweb.org/Micropub) endpoint utilizing [IndieAuth](https://indieweb.org/IndieAuth). I'm using [Let's Encrypt](https://letsencrypt.org/) to enable HTTPS (shout out to the awesome [docker compose lets encrypt nginx proxy](https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion) for handling all of that). In general, the ideas behind the [Indie Web](https://indieweb.org/why) have inspirsed a lot of what went into creating this.
+This is my personal website, built using the python [falcon](https://falconframework.org/) web API framework and [React](https://reactjs.org/) JavaScript library. Blog posts and other content are managed through a [Micropub](https://indieweb.org/Micropub) endpoint utilizing [IndieAuth](https://indieweb.org/IndieAuth). I'm using [Let's Encrypt](https://letsencrypt.org/) to enable HTTPS (shout out to the awesome [docker compose lets encrypt nginx proxy](https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion) for handling all of that). The ideas behind the [Indie Web](https://indieweb.org/why) have motivated parts of what went into creating this.
 
 Feel free to poke around, make suggestions, trash talk, etc.
 
