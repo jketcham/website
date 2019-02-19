@@ -5,8 +5,6 @@ from marshmallow import (
     post_dump,
 )
 
-LIST_FIELDS = ['category']
-
 
 class PostSchema(Schema):
     id = fields.String(dump_only=True)

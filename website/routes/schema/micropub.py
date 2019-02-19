@@ -7,6 +7,9 @@ from marshmallow import (
 
 from .post import PostSchema
 
+LIST_FIELDS = ['category']
+
+
 class JSONSchema(PostSchema):
     type = fields.Method(deserialize='get_type')
     content = fields.Method(deserialize='get_content')
