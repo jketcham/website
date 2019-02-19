@@ -6,9 +6,11 @@ import './root.module.css';
 
 
 const Root = ({ children }) => (
-  <div styleName="container">
+  <div>
     <NavBar />
-    {children}
+    <div>
+      {children}
+    </div>
   </div>
 );
 
