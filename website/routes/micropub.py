@@ -134,7 +134,10 @@ class MicropubResource(Resource):
 
     def handle_update(self, resp, post, data):
         # TODO need to use schema here
-        post.update(**data['replace'])
+        print(data['replace'])
+        schema = JSONSchema()
+        result = schema.load(data['replace'])
+        post.update(**result)
         post.reload()
         resp.location = '{}blog/{}'.format(config.HOST, post.slug)
 
