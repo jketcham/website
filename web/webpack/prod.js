@@ -36,6 +36,20 @@ const config = {
         charset: 'utf-8',
       }],
       links: [{
+        href: '/static/apple-touch-icon.png',
+        rel: 'apple-touch-icon',
+        sizes: '180x180'
+      }, {
+        href: '/static/favicon-16x16.png',
+        rel: 'icon',
+        sizes: '16x16',
+        type: 'image/png'
+      }, {
+        href: '/static/favicon-32x32.png',
+        rel: 'icon',
+        sizes: '32x32',
+        type: 'image/png'
+      }, {
         rel: 'me',
         href: 'https://twitter.com/_jket',
       }, {
