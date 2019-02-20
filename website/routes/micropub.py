@@ -133,12 +133,24 @@ class MicropubResource(Resource):
         resp.location = '{}blog/{}'.format(config.HOST, post.slug)
 
     def handle_update(self, resp, post, data):
-        # TODO need to use schema here
-        print(data['replace'])
-        schema = JSONSchema()
-        result = schema.load(data['replace'])
+        # TODO need to use schema here / cleanup
+
+        # merge together properties from replace and add
+        # ignoring delete property because not all clients
+        # use it correctly
+        result = {}
+        result.update(data['replace'])
+        result.update(data['add'])
+
+        if result.get('content'):
+            result['content'] = result['content'][0].get('html')
+
+        if result.get('name'):
+            result['name'] = result['name'][0]
+
         post.update(**result)
         post.reload()
+
         resp.location = '{}blog/{}'.format(config.HOST, post.slug)
 
     def handle_create(self, req, resp, data):
