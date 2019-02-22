@@ -80,8 +80,10 @@ class MicropubResource(Resource):
         if req.params.get('q') == 'source':
             slug = get_slug(req.params['url'])
             post = Post.objects(slug=slug).first()
+
             schema = PostSource()
             result = schema.dump({'type': post.type, 'properties': post})
+
             resp.body = json.dumps(result.data)
             return
 
