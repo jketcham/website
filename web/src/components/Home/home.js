@@ -38,6 +38,15 @@ const HomePage = () => (
         <ul>
           <li>
             <a
+              href="https://keybase.io/jketcham"
+              rel="me noopener noreferrer"
+              target="_blank"
+            >
+                Keybase
+            </a>
+          </li>
+          <li>
+            <a
               href="https://github.com/jketcham"
               rel="me noopener noreferrer"
               target="_blank"
