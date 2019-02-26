@@ -17,5 +17,4 @@ function getConfig() {
   return Object.assign(base, config);
 }
 
-
 module.exports = getConfig();
