@@ -11,7 +11,7 @@ const HomePage = () => (
         I&apos;m Jack, a software engineer living in Tempe, Arizona.
       </p>
       <p>
-        Feel free to get in touch with me! My email is
+        Feel free to get in touch with me at
         {' '}
         <a
           href="mailto:jack@jackketcham.com"
@@ -20,6 +20,13 @@ const HomePage = () => (
             jack@jackketcham.com
         </a>
         .
+      </p>
+      <p>
+        PGP Fingerprint:
+        {' '}
+        <code>
+          5075 540D A46A 5C23 74DE  6560 DC02 5880 B631 9C9D
+        </code>
       </p>
       <div styleName="links">
         <h5>
