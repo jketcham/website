@@ -1,7 +1,7 @@
 falcon==1.2.0
 graceful==0.5.0
 gunicorn==19.7.1
-marshmallow==2.13.5
+marshmallow==2.15.1
 mongoengine==0.13.0
 pymongo==3.4.0
 python-dateutil==2.6.1
