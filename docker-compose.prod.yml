@@ -8,8 +8,8 @@ services:
     depends_on:
       - mongo
     environment:
-      - VIRTUAL_HOST=alpha.jackketcham.com
-      - LETSENCRYPT_HOST=alpha.jackketcham.com
+      - VIRTUAL_HOST=jackketcham.com
+      - LETSENCRYPT_HOST=jackketcham.com
       - LETSENCRYPT_EMAIL=jack.ketcham@pm.me
     ports:
       - "8000:8000"

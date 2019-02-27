@@ -1,4 +1,4 @@
-HOST = 'https://alpha.jackketcham.com/'
+HOST = 'https://jackketcham.com/'
 
 STATIC_DIR = '../static/'
 MONGO_DB = 'website'
