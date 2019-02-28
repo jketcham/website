@@ -4,6 +4,32 @@ import React from 'react';
 import Page from '../Page';
 import './home.module.css';
 
+const LINKS = [{
+  link: 'https://keybase.io/jketcham',
+  name: 'Keybase',
+}, {
+  link: 'https://github.com/jketcham',
+  name: 'GitHub',
+}, {
+  link: 'https://twitter.com/_jket',
+  name: 'Twitter',
+}, {
+  link: 'https://mastodon.technology/@jket',
+  name: 'Mastodon',
+}, {
+  link: 'https://matrix.to/#/@jket:matrix.org',
+  name: 'Matrix',
+}, {
+  link: 'https://flickr.com/photos/jackketcham',
+  name: 'Flickr',
+}, {
+  link: 'https://www.openstreetmap.org/user/_jket',
+  name: 'OpenStreetMap',
+}, {
+  link: 'https://musicbrainz.org/user/jket',
+  name: 'MusicBrainz',
+}];
+
 const HomePage = () => (
   <Page styleName="page">
     <div styleName="intro">
@@ -43,78 +69,17 @@ const HomePage = () => (
           </span>
         </h5>
         <ul>
-          <li>
-            <a
-              href="https://keybase.io/jketcham"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                Keybase
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/jketcham"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                GitHub
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://twitter.com/_jket"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                Twitter
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://mastodon.technology/@jket"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                Mastodon
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://matrix.to/#/@jket:matrix.org"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                Matrix
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://flickr.com/photos/jackketcham"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                Flickr
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.openstreetmap.org/user/_jket"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                OpenStreetMap
-            </a>
-          </li>
-          <li>
-            <a
-              href="musicbrainz.org/user/jket"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-                MusicBrainz
-            </a>
-          </li>
+          {LINKS.map(({ name, link }) => (
+            <li>
+              <a
+                href={link}
+                rel="me noopener noreferrer"
+                target="_blank"
+              >
+                {name}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
