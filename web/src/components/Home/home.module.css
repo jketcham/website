@@ -9,11 +9,6 @@
   margin-bottom: 1em;
 }
 
-.intro {
-  position: relative;
-  max-width: 75vw;
-}
-
 .intro p {
   line-height: 1.5em;
 }

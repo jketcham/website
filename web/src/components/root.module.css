@@ -27,6 +27,11 @@ a:hover {
   color: white;
 }
 
+p {
+  overflow: hidden;
+  word-break: break-word;
+}
+
 :global(#root) {
   height: 100%;
 }
