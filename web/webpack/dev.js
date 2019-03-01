@@ -75,7 +75,7 @@ const config = {
         href: 'https://tokens.indieauth.com/token',
       }, {
         rel: 'micropub',
-        href: 'https://alpha.jackketcham.com/api/micropub',
+        href: 'https://jackketcham.com/api/micropub',
       }],
       bodyHtmlSnippet: '<a rel="me" href="https://mastodon.technology/@jket" style="display: none"></a>',
     }),
