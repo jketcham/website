@@ -142,7 +142,13 @@ class MicropubResource(Resource):
         # use it correctly
         result = {}
         result.update(data.get('replace'))
-        result.update(data.get('add'))
+
+        if data.get('add'):
+            for key, value in data['add'].items():
+                if type(value) == list:
+                    result[key] = value[0]
+                else:
+                    result[key] = value
 
         if result.get('content'):
             result['content'] = result['content'][0].get('html')
