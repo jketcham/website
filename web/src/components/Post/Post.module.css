@@ -15,6 +15,10 @@
   margin: 0;
 }
 
+.content a {
+  border-bottom: 1px dotted black;
+}
+
 .header {
   width: 100%;
   padding: 0 0 1em 0;
