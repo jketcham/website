@@ -11,11 +11,6 @@ class PostsResource(object):
     def on_get(self, req, resp):
         if req.params.get('slug'):
             post = Post.live_posts().get(slug=req.params['slug'])
-
-            # quick n dirty save views
-            post.views += 1
-            post.save()
-
             schema = PostSchema()
             result = schema.dump(post)
             resp.body = json.dumps(result[0])
