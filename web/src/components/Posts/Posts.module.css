@@ -2,6 +2,10 @@
   margin-top: 0;
 }
 
+.posts {
+  flex-grow: 1;
+}
+
 .posts > article:first-child {
   margin-top: 0;
 }
