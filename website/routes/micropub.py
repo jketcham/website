@@ -141,8 +141,8 @@ class MicropubResource(Resource):
         # ignoring delete property because not all clients
         # use it correctly
         result = {}
-        result.update(data['replace'])
-        result.update(data['add'])
+        result.update(data.get('replace'))
+        result.update(data.get('add'))
 
         if result.get('content'):
             result['content'] = result['content'][0].get('html')
