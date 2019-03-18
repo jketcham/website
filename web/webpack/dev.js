@@ -9,6 +9,18 @@ const config = {
 
   mode: 'development',
 
+  // TODO: deeply merge configs so we don't need to re-include other parts
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    modules: [
+      path.resolve(__dirname, '../src'),
+      'node_modules',
+    ],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
@@ -99,6 +111,7 @@ const config = {
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
     },
   },
+
 };
 
 module.exports = config;

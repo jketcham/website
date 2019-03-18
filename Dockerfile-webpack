@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 ENV NODE_ENV=development
 
-RUN npm install @babel/runtime && npm install
+RUN npm install
 
 EXPOSE 8181
 EXPOSE 8081
