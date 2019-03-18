@@ -1,23 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import useFetch from '../../hooks/useFetch';
 import './photos.module.css';
 
-const PhotosPage = ({ photos }) => (
-  <div styleName="page">
-    {photos.map(photo => (
-      <div styleName="photoItem" key={photo.id}>
-        <img src={`/api/photos/${photo.id}`} alt={photo.title} />
-        <div>
-          {photo.image_metadata.DateTimeOriginal}
-        </div>
-      </div>
-    ))}
-  </div>
-);
+const PhotosPage = () => {
+  const { data: { content: photos }, isLoading, isError } = useFetch(
+    '/api/photos',
+    { data: { content: [] } },
+  );
 
-PhotosPage.propTypes = {
-  photos: PropTypes.array.isRequired,
+  if (isError) {
+    return (
+      <div>
+        Woops, something ain&apos;t right. Try again in a bit.
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div>
+        Loading...
+      </div>
+    );
+  }
+
+  return (
+    <div styleName="page">
+      {photos.map(photo => (
+        <div styleName="photoItem" key={photo.id}>
+          <img src={`/api/photos/${photo.id}`} alt={photo.title} />
+          <div>
+            {photo.image_metadata.DateTimeOriginal}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default PhotosPage;

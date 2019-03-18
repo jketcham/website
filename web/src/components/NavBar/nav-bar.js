@@ -1,29 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import PostsURL from '../../urls/PostsURL';
 import './nav-bar.module.css';
 
-const Navbar = ({ isActive }) => (
-  <div styleName="nav-bar">
-    <h3 styleName="nav-bar-header">
-      <Link to="/">
-        jack ketcham
-      </Link>
-    </h3>
-    <ul styleName="nav-bar-list">
-      <li data-active={isActive('/blog')}>
-        <Link to={new PostsURL().serialize()}>
-          blog
-        </Link>
-      </li>
-    </ul>
-  </div>
-);
+const ROUTES = [{
+  label: 'blog',
+  Url: PostsURL,
+}];
 
-Navbar.propTypes = {
-  isActive: PropTypes.func.isRequired,
+const Navbar = ({ location: { pathname } }) => {
+  function isActive(path) {
+    return pathname.startsWith(path);
+  }
+
+  return (
+    <div styleName="nav-bar">
+      <h3 styleName="nav-bar-header">
+        <Link to="/">
+          jack ketcham
+        </Link>
+      </h3>
+      <ul styleName="nav-bar-list">
+        {ROUTES.map(({ label, Url }) => {
+          const path = new Url().serialize();
+
+          return (
+            <li data-active={isActive(path)} key={label}>
+              <Link to={path}>
+                {label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  location: PropTypes.object.isRequired,
+};
+
+export default withRouter(Navbar);

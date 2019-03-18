@@ -1,23 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import useFetch from '../../../hooks/useFetch';
 import PostsURL from '../../../urls/PostsURL';
 import Tags from '../../Tags';
 import './TagsSidebar.module.css';
 
-const TagsSidebar = ({ tags }) => (
-  <div styleName="tags">
-    <section>
-      <h2>
-        Tags
-      </h2>
-    </section>
-    <Tags items={tags} AppURL={PostsURL} direction="vertical" />
-  </div>
-);
+const TagsSidebar = () => {
+  const { data, isLoading, isError } = useFetch(
+    '/api/tags',
+    { isLoading: true, data: { results: [] } },
+  );
 
-TagsSidebar.propTypes = {
-  tags: PropTypes.array.isRequired,
+  if (isLoading || isError) {
+    return null;
+  }
+
+  return (
+    <div styleName="tags">
+      <section>
+        <h2>
+          Tags
+        </h2>
+      </section>
+      <Tags items={data.results} AppURL={PostsURL} direction="vertical" />
+    </div>
+  );
 };
 
 export default TagsSidebar;
