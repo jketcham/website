@@ -1,15 +1,15 @@
 const surroundedByBraces = /{([^}]+)}/g;
 
 function serializeQueryString(params) {
-  if (!params) {
-    return '';
-  }
-
   const string = Object.entries(params)
     .map(([key, value]) => `${encodeURIComponent(key)}=${value}`)
     .join('&');
 
-  return `?${string}`;
+  if (string) {
+    return `?${string}`;
+  }
+
+  return '';
 }
 
 /** replace route params with given values */
