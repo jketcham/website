@@ -70,7 +70,7 @@ const HomePage = () => (
         </h5>
         <ul>
           {LINKS.map(({ name, link }) => (
-            <li>
+            <li key={link}>
               <a
                 href={link}
                 rel="me noopener noreferrer"
