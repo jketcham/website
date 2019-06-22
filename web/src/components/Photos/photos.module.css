@@ -1,16 +1,64 @@
 .page {
-  display: flex;
+  display: grid;
   flex-direction: column;
   align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 1em;
+}
+
+.photos {
+  padding: 0 1em;
+}
+
+.photoset-tags {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.photoset-tags li {
+  display: inline-block;
+}
+
+.photoset-tags li + li {
+  margin-left: 1em;
 }
 
 .photoItem img {
-  width: calc(100% - 3em);
+  max-height: 85vh;
+  max-width: 100%;
 }
 
 .photoItem {
-  margin-top: 2em;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.photoMetadata {
+  padding: 1em 0;
+  align-self: flex-start;
+}
+
+.photoMetadata ul {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  margin: 0 1em;
+}
+
+.photoMetadata li {
+  display: inline-block;
+}
+
+.photoMetadata li + li {
+  margin-left: 1em;
 }
