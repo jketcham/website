@@ -21,6 +21,7 @@ COPY requirements.txt /usr/src/app
 COPY gunicorn.py /usr/src/app/gunicorn.py
 COPY website /usr/src/app/website
 COPY config /usr/src/app/config
+COPY .env /usr/src/app
 
 # include built web assets
 COPY --from=web /usr/src/app/dist /usr/src/app/website/static
