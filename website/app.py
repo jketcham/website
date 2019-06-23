@@ -1,3 +1,5 @@
+from os import environ
+
 import falcon
 from mongoengine import connect
 
@@ -6,7 +8,8 @@ from .config import config
 
 
 def create_app(config):
-    connect(config.MONGO_DB, host=config.MONGO_HOST)
+    connect(config.MONGO_DB, host=config.MONGO_HOST, port=environ.get('MONGO_PORT'),
+            username=environ.get('MONGO_USER'), password=environ.get('MONGO_PASS'), authentication_source='admin')
 
     api = falcon.API()
     api.req_options.auto_parse_form_urlencoded = True

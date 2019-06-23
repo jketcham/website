@@ -16,9 +16,10 @@ services:
 
   mongo:
     image: "mongo:3.4.5"
+    command: --port ${MONGO_PORT:-27017}
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "${MONGO_PORT:-27017}:${MONGO_PORT:-27017}"
     volumes:
       - ${MONGO_PATH:-./db}:/data/db
     environment:
