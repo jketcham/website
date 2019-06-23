@@ -8,7 +8,7 @@ from .config import config
 
 
 def create_app(config):
-    connect(config.MONGO_DB, host=config.MONGO_HOST, port=environ.get('MONGO_PORT'),
+    connect(config.MONGO_DB, host=config.MONGO_HOST, port=int(environ.get('MONGO_PORT', '27017')),
             username=environ.get('MONGO_USER'), password=environ.get('MONGO_PASS'), authentication_source='admin')
 
     api = falcon.API()
