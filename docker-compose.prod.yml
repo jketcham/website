@@ -22,7 +22,7 @@ services:
       - ${MONGO_PATH:-./db}:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS:-admin}
 
   nginx-web:
     image: nginx

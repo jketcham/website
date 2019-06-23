@@ -29,6 +29,9 @@ services:
       - "27017:27017"
     volumes:
       - db-volume:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS:-admin}
 
 volumes:
   db-volume:
