@@ -20,7 +20,10 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - db-volume:/data/db
+      - ${MONGO_PATH:-./db}:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-admin}
 
   nginx-web:
     image: nginx
@@ -82,7 +85,6 @@ services:
         max-file: ${NGINX_LETSENCRYPT_LOG_MAX_FILE:-10}
 
 volumes:
-  db-volume:
   conf:
   vhost:
   html:
