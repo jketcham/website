@@ -30,12 +30,17 @@ const PhotosPage = ({ location }) => {
         />
         {photos.map(photo => <Photo key={photo.filename} photo={photo} />)}
         {isLoading && photos.length === 0 && (
-          <div>
+          <div styleName="center">
             Loading...
           </div>
         )}
+        {!isLoading && photos.length === 0 && (
+          <div styleName="center">
+            Looks like there&apos;s nothing here
+          </div>
+        )}
         {isError && (
-          <div>
+          <div styleName="center">
             Woops, something ain&apos;t right. Try again in a bit.
           </div>
         )}

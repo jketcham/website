@@ -12,3 +12,8 @@
 .container {
   margin: 0 5vw 5vw;
 }
+
+.center {
+  padding: 1em;
+  text-align: center;
+}
