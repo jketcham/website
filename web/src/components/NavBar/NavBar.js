@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 
 import PostsURL from '../../urls/PostsURL';
-import './nav-bar.module.css';
+import PhotosURL from '../../urls/PhotosURL';
+import './NavBar.module.css';
 
 const ROUTES = [{
   label: 'blog',
   Url: PostsURL,
+}, {
+  label: 'photos',
+  Url: PhotosURL,
 }];
 
 const Navbar = ({ location: { pathname } }) => {

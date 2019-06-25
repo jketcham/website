@@ -2,18 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useFetch from '../../hooks/useFetch';
-import PostsURL from '../../urls/PostsURL';
-import Page from '../Page';
-import Meta from '../Meta';
+import useFetch from '../../../hooks/useFetch';
+import PostsURL from '../../../urls/PostsURL';
+import Page from '../../chrome/Page';
+import Meta from '../../chrome/Meta';
 import './Post.module.css';
 
 const Post = ({ match: { params: { slug } } }) => {
-  const { data, isLoading, isError } = useFetch(`/api/posts?slug=${slug}`, {
-    isLoading: true,
-    data: {},
-  });
-  const post = data;
+  const { data: post, isLoading, isError } = useFetch(
+    `/api/posts?slug=${slug}`,
+    { isLoading: true, data: {} },
+  );
 
   if (isLoading) {
     return (

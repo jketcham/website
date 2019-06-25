@@ -1,0 +1,14 @@
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.pagination a[data-to="prev"] {
+  margin-right: auto;
+}
+
+.pagination a[data-to="next"] {
+  margin-left: auto;
+}

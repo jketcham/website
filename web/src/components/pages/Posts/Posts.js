@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useFetch from '../../hooks/useFetch';
-import Page from '../Page';
+import useFetch from '../../../hooks/useFetch';
+import Page from '../../chrome/Page';
 import TagsSidebar from './TagsSidebar';
 import PostList from './PostList';
 import './Posts.module.css';

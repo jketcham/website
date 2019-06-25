@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PostsURL from '../../urls/PostsURL';
-import PostURL from '../../urls/PostURL';
-import ListItem from '../ListItem';
+import PostsURL from '../../../urls/PostsURL';
+import PostURL from '../../../urls/PostURL';
+import ListItem from '../../chrome/ListItem';
 
 const PostList = ({ posts, isLoading, isError }) => {
   if (isError) {

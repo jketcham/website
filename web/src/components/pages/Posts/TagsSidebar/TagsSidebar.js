@@ -1,8 +1,8 @@
 import React from 'react';
 
-import useFetch from '../../../hooks/useFetch';
-import PostsURL from '../../../urls/PostsURL';
-import Tags from '../../Tags';
+import useFetch from '../../../../hooks/useFetch';
+import PostsURL from '../../../../urls/PostsURL';
+import Tags from '../../../chrome/Tags';
 import './TagsSidebar.module.css';
 
 const TagsSidebar = () => {

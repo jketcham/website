@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
-import Root from './components/root';
-import HomePage from './components/Home';
-import PostsPage from './components/Posts';
-import PostPage from './components/Post';
-import PhotosPage from './components/Photos';
+import Root from './Root';
+import HomePage from './pages/Home';
+import PostsPage from './pages/Posts';
+import PostPage from './pages/Post';
+import PhotosPage from './pages/Photos';
 
 const Router = () => (
   <BrowserRouter>

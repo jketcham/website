@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-import Page from '../Page';
-import './home.module.css';
+import Page from '../../chrome/Page';
+import './Home.module.css';
 
 const LINKS = [{
   link: 'https://keybase.io/jketcham',
