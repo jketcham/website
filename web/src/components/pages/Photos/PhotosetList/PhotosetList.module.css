@@ -1,0 +1,14 @@
+.photosets {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.photosets li {
+  display: inline-block;
+}
+
+.photosets li + li {
+  margin-left: 1em;
+}

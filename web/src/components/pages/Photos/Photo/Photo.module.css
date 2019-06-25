@@ -1,0 +1,45 @@
+.photo img, .photo > div {
+  position: relative;
+  max-height: 85vh;
+  max-width: 100%;
+}
+
+.photo {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo > div:hover .metadata {
+  opacity: 1;
+}
+
+.metadata {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  padding: 1em;
+  align-self: flex-start;
+  transition: 0.2s;
+}
+
+.metadata small {
+  background-color: white;
+  color: black;
+}
+
+.metadata ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.metadata li {
+  display: inline-block;
+}
+
+.metadata li + li {
+  margin-left: 0.5em;
+}
