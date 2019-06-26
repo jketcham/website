@@ -1,17 +1,15 @@
 from datetime import datetime
 
 from mongoengine import (
-    IntField,
     BooleanField,
     DateTimeField,
     DictField,
-    ImageField,
     Document,
-    EmbeddedDocument,
-    ObjectIdField,
+    IntField,
     ListField,
-    StringField,
+    ObjectIdField,
     PointField,
+    StringField,
 )
 
 
@@ -20,25 +18,11 @@ class Photo(Document):
         'collection': 'photos',
     }
 
-    title = StringField(required=True, unique=True)
-    description = StringField()
+    filename = StringField(required=True, unique=True)
+    metadata = DictField()
+    files = ListField(DictField())
+    photosets = ListField(ObjectIdField())
     tags = ListField(StringField())
-    location_title = StringField()
-    location_coords = PointField()
-    photo_collection = ObjectIdField()
-
-    views = IntField(default=0)
     public = BooleanField(default=True)
-
-    image = ImageField()
-    image_metadata = DictField()
-
+    last_modified = IntField()
     date_uploaded = DateTimeField(default=datetime.now)
-
-
-class EmbeddedPhoto(EmbeddedDocument):
-    id = ObjectIdField(required=True)
-
-    def get(self):
-        from website.models import Photo
-        return Photo.objects(id=self.id)
