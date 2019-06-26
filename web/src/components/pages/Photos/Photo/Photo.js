@@ -13,10 +13,10 @@ const Photo = ({ photo }) => {
     <div styleName="photo" key={photo.id}>
       <div>
         <picture>
-          {photo.paths.slice(0, -1).map(({ path, size, filename }) => (
+          {photo.files.slice(0, -1).map(({ path, size, filename }) => (
             <source media={`(max-width:${size}px)`} srcSet={`/api/photos/${filename}`} key={size} />
           ))}
-          <img src={`/api/photos/${photo.paths.slice(-1)[0].filename}`} alt={photo.filename} />
+          <img src={`/api/photos/${photo.files.slice(-1)[0].filename}`} alt={photo.filename} />
         </picture>
 
         <section styleName="metadata">

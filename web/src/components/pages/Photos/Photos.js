@@ -34,7 +34,7 @@ const PhotosPage = ({ location }) => {
             Loading...
           </div>
         )}
-        {!isLoading && photos.length === 0 && (
+        {!isLoading && !isError && photos.length === 0 && (
           <div styleName="center">
             Looks like there&apos;s nothing here
           </div>
