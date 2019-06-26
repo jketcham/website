@@ -17,6 +17,7 @@ services:
     volumes:
       - .:/usr/src/app
       - ./web:/usr/src/app/web
+      - ${PHOTO_DESTINATION:-./images}:/data
     restart: unless-stopped
     depends_on:
       - mongo

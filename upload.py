@@ -9,15 +9,15 @@ from dotenv import load_dotenv
 from website.models import Photo
 
 
+# Load dot environment file config
+load_dotenv('.env')
+
 # TODO: Eventually have sizes like: [100, 400, 800, 1024, 1600, 2048]
 FILE_WIDTHS = [1024, 1600, 2048]
-DESTINATION = os.path.abspath('./images')
+DESTINATION = os.getenv('PHOTO_DESTINATION')
 
 
 def init():
-    # Load dot environment file config
-    load_dotenv('.env')
-
     # Connect to database
     connect('website', host=os.getenv('MONGO_HOST'), port=int(os.getenv('MONGO_PORT', '27017')),
             username=os.getenv('MONGO_USER'), password=os.getenv('MONGO_PASS'),
@@ -85,6 +85,8 @@ def main():
 
             name = "{}-{}.{}".format(file_name, width, file_extension)
             destination = os.path.join(DESTINATION, name)
+
+            print('resizing', name)
 
             # Resize using ImageMagick
             os.system("convert -strip {} -resize {} {}".format(entry.path, width, destination))
