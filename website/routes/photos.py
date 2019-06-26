@@ -28,30 +28,32 @@ class PhotoResource(object):
         resp.content_type = 'image/jpeg'
 
 
+# FIXME: quick n dirty
 def make_queryset(params):
     query_args = {}
 
-    for key, value in params.items():
+    for query_arg, value in params.items():
         if value:
-            query_args[key] = value
+            query_args[query_arg] = value
+
+            if query_arg == 'tags__all':
+                query_args[query_arg] = query_args[query_arg].split(',')
 
     return query_args
 
 
 class PhotosResource(ListResource, PaginatedMixin):
-    owner = StringParam('owner id of photos')
-    start_gt = StringParam('minimum date of photo start')
-    start_lt = StringParam('maximum date of photo\'s start')
-    order = StringParam('field to order photos by', 'start')
+    tags = StringParam('field to order photos by')
 
     def list(self, params, meta):
         query = {
-            'owner__id': params.get('owner'),
-            'start__gt': params.get('start_gt'),
-            'start__lt': params.get('start_lt'),
+            'tags__all': params.get('tags'),
         }
 
-        photos = Photo.objects(**make_queryset(query)).order_by(params.get('order'))
+        photos = Photo.objects(**make_queryset(query))
+
+        # Pagination
+        # TODO: Extract this functionality for reuse
         paginated_photos = photos.skip(
             params['page'] * params['page_size']
         ).limit(params['page_size'])
@@ -61,9 +63,9 @@ class PhotosResource(ListResource, PaginatedMixin):
         else:
             meta['has_more'] = False
 
+        self.add_pagination_meta(params, meta)
+
         photo_schema = PhotoSchema(many=True)
         result = photo_schema.dump(paginated_photos)
-
-        self.add_pagination_meta(params, meta)
 
         return result.data
