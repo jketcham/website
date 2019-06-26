@@ -1,4 +1,6 @@
 import json
+import os
+import io
 
 import falcon
 from mongoengine.errors import ValidationError
@@ -13,17 +15,16 @@ from .schema.photo import PhotoSchema
 
 class PhotoResource(object):
     def on_get(self, req, resp, photo_id):
-        photo = Photo.objects(id=photo_id).first()
+        filepath = os.path.join(os.path.abspath('./images'), photo_id)
+        photo = io.open(filepath, 'rb')
+        content_length = os.path.getsize(filepath)
 
         if not photo:
             raise falcon.HTTPNotFound()
 
-        # photo_schema = PhotoSchema()
-        # result = photo_schema.dump(photo)
-
-        # resp.body = json.dumps(result.data)
         resp.cache_control = ['max-age=315360000', 'public', 'immutable']
-        resp.data = photo.image.read()
+        resp.stream = photo
+        resp.content_length = content_length
         resp.content_type = 'image/jpeg'
 
 
