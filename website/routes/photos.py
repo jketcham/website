@@ -1,15 +1,14 @@
-import json
-import os
 import io
+import os
+import json
 
 import falcon
 from mongoengine.errors import ValidationError
-
-from website.models import Photo
 from graceful.parameters import StringParam
 from graceful.resources.generic import ListResource
 from graceful.resources.mixins import PaginatedMixin
 
+from website.models import Photo, Photoset
 from .schema.photo import PhotoSchema
 
 
@@ -44,13 +43,18 @@ def make_queryset(params):
 
 class PhotosResource(ListResource, PaginatedMixin, with_context=False):
     tags = StringParam('field to order photos by')
+    photoset = StringParam('view photos in a photoset')
 
     def list(self, params, meta):
         query = {
             'tags__all': params.get('tags'),
         }
 
-        photos = Photo.objects(**make_queryset(query))
+        if params.get('photoset'):
+            photoset = Photoset.objects.get(slug=params.get('photoset'))
+            photos = Photo.objects(__raw__={'_id': {'$in': photoset.photos}})
+        else:
+            photos = Photo.objects(**make_queryset(query))
 
         # Pagination
         # TODO: Extract this functionality for reuse
