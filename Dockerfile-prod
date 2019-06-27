@@ -20,6 +20,8 @@ WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app
 COPY .env /usr/src/app
 COPY gunicorn.py /usr/src/app/gunicorn.py
+COPY shell.py /usr/src/app/shell.py
+COPY upload.py /usr/src/app/upload.py
 COPY website /usr/src/app/website
 COPY config /usr/src/app/config
 
