@@ -20,7 +20,7 @@ function fetchReducer(state, { type, payload }) {
 
 function useFetch(url, initialData) {
   const [state, dispatch] = useReducer(fetchReducer, {
-    isLoading: false,
+    isLoading: true,
     isError: false,
     data: null,
     ...initialData,
