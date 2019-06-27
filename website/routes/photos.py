@@ -42,7 +42,7 @@ def make_queryset(params):
     return query_args
 
 
-class PhotosResource(ListResource, PaginatedMixin):
+class PhotosResource(ListResource, PaginatedMixin, with_context=False):
     tags = StringParam('field to order photos by')
 
     def list(self, params, meta):
