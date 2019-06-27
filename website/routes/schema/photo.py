@@ -6,7 +6,7 @@ class PhotoSchema(Schema):
     filename = fields.String()
     metadata = fields.Dict()
     files = fields.List(fields.Dict())  # TODO: make schema for file
-    photosets = fields.String()
     tags = fields.List(fields.String())
     public = fields.Bool()
-    date_uploaded = fields.DateTime()
+    created = fields.DateTime()
+    photo_last_modified = fields.DateTime()

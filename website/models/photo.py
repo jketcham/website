@@ -7,7 +7,6 @@ from mongoengine import (
     Document,
     IntField,
     ListField,
-    ObjectIdField,
     PointField,
     StringField,
 )
@@ -21,8 +20,7 @@ class Photo(Document):
     filename = StringField(required=True, unique=True)
     metadata = DictField()
     files = ListField(DictField())
-    photosets = ListField(ObjectIdField())
     tags = ListField(StringField())
     public = BooleanField(default=True)
-    last_modified = IntField()
-    date_uploaded = DateTimeField(default=datetime.now)
+    created = DateTimeField(default=datetime.now)
+    photo_last_modified = IntField()

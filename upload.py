@@ -101,7 +101,7 @@ def main():
 
         # Save Photo doc
         photo_doc = Photo(filename=entry.name, metadata=metadata, files=files,
-                          last_modified=entry.stat().st_mtime)
+                          photo_last_modified=entry.stat().st_mtime)
 
         try:
             photo_doc.save()
