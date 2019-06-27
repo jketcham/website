@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-prod
+    volumes:
+      - ${PHOTO_DESTINATION:-./photos}:/photos
     restart: unless-stopped
     depends_on:
       - mongo

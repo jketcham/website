@@ -15,7 +15,7 @@ from .schema.photo import PhotoSchema
 
 class PhotoResource(object):
     def on_get(self, req, resp, photo_id):
-        filepath = os.path.join('/data', photo_id)
+        filepath = os.path.join('/photos', photo_id)
         photo = io.open(filepath, 'rb')
         content_length = os.path.getsize(filepath)
 
