@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import useFetch from '../../../../hooks/useFetch';
 import './PhotosetList.module.css';
 
-const PhotosetList = ({ ...props }) => {
+const PhotosetList = ({ current, ...props }) => {
   const { data: { content: photosets }, isLoading, isError } = useFetch(
     '/api/photosets',
     { data: { content: [] } },
@@ -15,21 +16,29 @@ const PhotosetList = ({ ...props }) => {
   }
 
   return (
-    <div>
+    <div styleName="photoset-list">
       <h4>
-        Photo sets:
+        Photosets:
       </h4>
       <ul {...props} styleName="photosets">
-        {photosets.map(photoset => (
-          <li key={photoset.slug}>
-            <Link to={`?tags=${photoset.tags.join(',')}`}>
-              {photoset.name}
+        {photosets.map(({ slug, name }) => (
+          <li key={slug} styleName={slug === current ? 'active' : ''}>
+            <Link to={`?photoset=${slug}`}>
+              {name}
             </Link>
           </li>
         ))}
       </ul>
     </div>
   );
+};
+
+PhotosetList.propTypes = {
+  current: PropTypes.string,
+};
+
+PhotosetList.defaultProps = {
+  current: null,
 };
 
 export default PhotosetList;

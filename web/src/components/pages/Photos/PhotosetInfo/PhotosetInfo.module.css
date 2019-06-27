@@ -1,0 +1,8 @@
+.photoset {
+  border-top: 1px dotted black;
+  border-bottom: 1px dotted black;
+}
+
+.photoset p {
+  white-space: pre-wrap;
+}

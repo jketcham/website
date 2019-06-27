@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 
 import Pagination from '../../chrome/Pagination';
 import useFetch from '../../../hooks/useFetch';
 import Photo from './Photo';
 import PhotosetList from './PhotosetList';
+import PhotosetInfo from './PhotosetInfo';
 import './Photos.module.css';
 
 const PhotosPage = ({ location }) => {
@@ -12,6 +14,7 @@ const PhotosPage = ({ location }) => {
     `/api/photos${location.search}`,
     { data: { meta: {}, content: [] } },
   );
+  const { photoset } = queryString.parse(window.location.search);
 
   return (
     <div>
@@ -21,14 +24,20 @@ const PhotosPage = ({ location }) => {
             Photos
           </h1>
         </section>
-        <PhotosetList />
+        <PhotosetList current={photoset} />
+        {photoset && (
+          <PhotosetInfo slug={photoset} />
+        )}
       </header>
+
       <div styleName="container">
         <Pagination
           next={meta.next}
           prev={meta.prev}
         />
+
         {photos.map(photo => <Photo key={photo.filename} photo={photo} />)}
+
         {isLoading && photos.length === 0 && (
           <div styleName="center">
             Loading...
@@ -44,6 +53,7 @@ const PhotosPage = ({ location }) => {
             Woops, something ain&apos;t right. Try again in a bit.
           </div>
         )}
+
         <Pagination
           next={meta.next}
           prev={meta.prev}

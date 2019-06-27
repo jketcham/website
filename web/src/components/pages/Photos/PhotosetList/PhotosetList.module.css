@@ -1,3 +1,11 @@
+.photoset-list {
+  margin: 1em 0;
+}
+
+.photoset-list h4 {
+  margin: 0 0 0.5em;
+}
+
 .photosets {
   display: inline-block;
   list-style: none;
@@ -11,4 +19,9 @@
 
 .photosets li + li {
   margin-left: 1em;
+}
+
+.active a {
+  background-color: black;
+  color: white;
 }
