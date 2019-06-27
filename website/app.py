@@ -3,7 +3,14 @@ from os import environ
 import falcon
 from mongoengine import connect
 
-from .routes import posts, photos, static, micropub, tags
+from .routes import (
+    posts,
+    photos,
+    photosets,
+    static,
+    micropub,
+    tags,
+)
 from .config import config
 
 
@@ -18,6 +25,8 @@ def create_app(config):
     api.add_route('/api/posts/{post_id}', posts.PostResource())
     api.add_route('/api/photos', photos.PhotosResource())
     api.add_route('/api/photos/{photo_id}', photos.PhotoResource())
+    api.add_route('/api/photosets', photosets.PhotosetsResource())
+    api.add_route('/api/photosets/{slug}', photosets.PhotosetResource())
     api.add_route('/api/micropub', micropub.MicropubResource())
 
     # serve frontend
