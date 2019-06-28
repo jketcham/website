@@ -17,9 +17,6 @@ const PhotosetList = ({ current, ...props }) => {
 
   return (
     <div styleName="photoset-list">
-      <h4>
-        Photosets:
-      </h4>
       <ul {...props} styleName="photosets">
         {photosets.map(({ slug, name }) => (
           <li key={slug} styleName={slug === current ? 'active' : ''}>
