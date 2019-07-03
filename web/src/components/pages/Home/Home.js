@@ -28,6 +28,9 @@ const LINKS = [{
 }, {
   link: 'https://musicbrainz.org/user/jket',
   name: 'MusicBrainz',
+}, {
+  link: 'https://www.are.na/jack-ketcham',
+  name: 'Are.na',
 }];
 
 const HomePage = () => (

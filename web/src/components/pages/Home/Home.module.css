@@ -18,14 +18,17 @@
 }
 
 .links ul {
-  list-style: none;
+  max-width: 20em;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 .links li {
   padding: 0 0 1em;
-  margin: 0;
+  flex-basis: 50%;
 }
 
 .about-list {
