@@ -29,3 +29,7 @@
   margin-top: 0;
   font-style: italic;
 }
+
+code {
+  background-color: #eaeaea;
+}
