@@ -31,6 +31,9 @@ const LINKS = [{
 }, {
   link: 'https://www.are.na/jack-ketcham',
   name: 'Are.na',
+}, {
+  link: 'https://www.librarything.com/profile/teleportjack',
+  name: 'LibraryThing',
 }];
 
 const HomePage = () => (
