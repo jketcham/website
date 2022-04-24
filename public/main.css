@@ -1,0 +1,39 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  color: currentColor;
+}
+
+pre {
+  overflow: hidden;
+  white-space: pre-line;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.day * {
+  background-color: antiquewhite;
+  color: #a06415;
+  border-color: #a06415;
+}
+
+.night * {
+  background-color: darkslateblue;
+  color: #b8adfb;
+  border-color: #b8adfb;
+}

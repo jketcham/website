@@ -1,0 +1,11 @@
+.container.sm.p-4
+  ul.nav
+    li
+      a(href="/") Home
+    li
+      form(method="post" action="/theme")
+        button(type="submit" title="Toggle theme" class="text-xl")
+          if .theme_is_day
+            span ☽
+          else
+            span ☼
