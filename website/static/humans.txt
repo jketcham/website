@@ -1,3 +1,0 @@
-Hey there, I'm Jack Ketcham, and I created this website.
-
-If you're interested in seeing the code behind it, you can find it at https://github.com/jketcham/website
