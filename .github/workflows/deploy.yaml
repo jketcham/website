@@ -43,6 +43,6 @@ jobs:
               "registry_type": "DOCR",
               "repository": "jketcham",
               "tag": "${{ github.sha }}"
-            },
-          },
+            }
+          }
         ]'
