@@ -1,5 +1,7 @@
 # website
 
+[![deploy](https://github.com/jketcham/website/actions/workflows/deploy.yaml/badge.svg)](https://github.com/jketcham/website/actions/workflows/deploy.yaml)
+
 ## Getting Started
 
 Install [Go](https://go.dev/doc/install).
