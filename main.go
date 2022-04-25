@@ -2,7 +2,6 @@ package main
 
 import (
   "log"
-  // "time"
 
   "github.com/gofiber/fiber/v2"
   "github.com/gofiber/fiber/v2/middleware/logger"
@@ -25,7 +24,6 @@ func main() {
   app.Get("/", func(c *fiber.Ctx) error {
     theme := c.Cookies("theme", "day")
     return c.Render("index", fiber.Map{
-      "Title": "Hello, World!",
       "theme": theme,
       "theme_is_day": theme == "day",
     }, "layouts/main")
@@ -34,7 +32,6 @@ func main() {
   app.Post("/theme", func(c *fiber.Ctx) error {
     cookie := new(fiber.Cookie)
     cookie.Name = "theme"
-    print(c.Cookies("theme"))
 
     if c.Cookies("theme", "day") == "day" {
       cookie.Value = "night"
