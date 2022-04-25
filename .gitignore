@@ -1,5 +1,3 @@
-# Distribution / packaging
 .env
-
-# mac os
 .DS_STORE
+*.gz
