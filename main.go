@@ -49,5 +49,13 @@ func main() {
     return c.Redirect("/")
   })
 
+  app.Use(func(c *fiber.Ctx) error {
+    theme := c.Cookies("theme", "day")
+    return c.Status(404).Render("404", fiber.Map{
+      "theme": theme,
+      "theme_is_day": theme == "day",
+    }, "layouts/main")
+  })
+
   log.Fatal(app.Listen(":3000"))
 }
