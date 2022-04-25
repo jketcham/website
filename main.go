@@ -10,16 +10,20 @@ import (
   "github.com/gofiber/template/pug"
 )
 
+var is_prod = os.Getenv("ENV") == "prod"
+
 func main() {
   engine := pug.New("./views", ".pug")
 
   app := fiber.New(fiber.Config{
-    Prefork: os.Getenv("ENV") == "prod",
+    Prefork: is_prod,
     Views: engine,
     PassLocalsToViews: true,
   })
 
-  app.Use(logger.New())
+  if !is_prod {
+    app.Use(logger.New())
+  }
   app.Use(compress.New())
 
   app.Use(func(c *fiber.Ctx) error {
