@@ -1,6 +1,7 @@
 package main
 
 import (
+  "os"
   "log"
 
   "github.com/gofiber/fiber/v2"
@@ -13,7 +14,9 @@ func main() {
   engine := pug.New("./views", ".pug")
 
   app := fiber.New(fiber.Config{
+    Prefork: os.Getenv("ENV") == "prod",
     Views: engine,
+    PassLocalsToViews: true,
   })
 
   app.Use(logger.New())
