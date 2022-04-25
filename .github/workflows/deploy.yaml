@@ -41,7 +41,7 @@ jobs:
             "name": "website",
             "image":{
               "registry_type": "DOCR",
-              "repository": "registry.digitalocean.com/jketcham/website",
+              "repository": "website",
               "tag": "${{ github.sha }}"
             }
           }
