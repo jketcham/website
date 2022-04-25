@@ -22,4 +22,8 @@ COPY views /views
 
 EXPOSE 3000
 
-ENTRYPOINT ["/app"]
+# Run dumb-init to take PID 1
+RUN apk add dumb-init
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+
+CMD ./app
