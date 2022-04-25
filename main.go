@@ -19,7 +19,11 @@ func main() {
   app.Use(logger.New())
   app.Use(compress.New())
 
-  app.Static("/public", "./public")
+  app.Static("/", "./public", fiber.Static{
+    Compress: true,
+    ByteRange: true,
+    MaxAge: 3600,
+  })
 
   app.Get("/", func(c *fiber.Ctx) error {
     theme := c.Cookies("theme", "day")
