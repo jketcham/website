@@ -1,0 +1,5 @@
+<div class="grid gap-4 grid-flow-row p-4 md:p-0 md:grid-flow-col my-auto">
+  <div class="border-solid border-2 p-4 flex justify-center items-center">
+    <p>Not found, <a href="/">head back?</a> </p>
+  </div>
+</div>

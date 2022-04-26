@@ -7,13 +7,13 @@ import (
   "github.com/gofiber/fiber/v2"
   "github.com/gofiber/fiber/v2/middleware/logger"
   "github.com/gofiber/fiber/v2/middleware/compress"
-  "github.com/gofiber/template/pug"
+  "github.com/gofiber/template/django"
 )
 
 var is_prod = os.Getenv("ENV") == "prod"
 
 func main() {
-  engine := pug.New("./views", ".pug")
+  engine := django.New("./views", ".django")
 
   app := fiber.New(fiber.Config{
     Prefork: is_prod,

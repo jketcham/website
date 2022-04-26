@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full {{theme}}">
+  <head>
+    <title>Jack Ketcham</title>
+    {% include "partials/meta.django" %}
+  </head>
+  <body class="container sm mx-auto h-full">
+    {{embed}}
+  </body>
+</html>

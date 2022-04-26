@@ -1,0 +1,10 @@
+<div class="grid gap-4 grid-flow-row p-4 md:p-0 my-auto">
+  <a href="/">⬷  Home</a>
+  {% for post in posts %}
+    <div>
+      <a href="/blog/{{ post.ID }}">
+        {{ ConvertRichText(post.Properties.Name.Value()) }}
+      </a>
+    </div>
+  {% endfor %}
+</div>
