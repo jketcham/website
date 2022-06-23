@@ -16,6 +16,8 @@ FROM alpine
 
 WORKDIR /
 
+RUN apk add dumb-init
+
 COPY --from=build /app /app
 COPY public /public
 COPY views /views
@@ -23,7 +25,6 @@ COPY views /views
 EXPOSE 3000
 
 # Run dumb-init to take PID 1
-RUN apk add dumb-init
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 CMD ./app
