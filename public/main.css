@@ -28,12 +28,8 @@ pre {
 
 .day * {
   background-color: antiquewhite;
-  color: #a06415;
-  border-color: #a06415;
 }
 
 .night * {
   background-color: darkslateblue;
-  color: #b8adfb;
-  border-color: #b8adfb;
 }
