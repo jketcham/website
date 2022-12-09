@@ -46,6 +46,9 @@ func main() {
 
   app.Get("/", func(c *fiber.Ctx) error {
     theme := c.Cookies("theme", "day")
+
+    c.Set("Link", "<https://jackketcham.com>; rel=\"canonical\"")
+
     return c.Render("index", fiber.Map{
       "theme": theme,
       "theme_is_day": theme == "day",
