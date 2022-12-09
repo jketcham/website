@@ -15,7 +15,7 @@ go mod download
 
 Start server:
 ```bash
-gow -v -c -e go,mod,pug run .
+gow -v -c -e go,mod,django run .
 ```
 
 ## Build
