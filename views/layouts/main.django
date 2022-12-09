@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full {{theme}}">
+<html lang="en-US" class="h-full {{theme}}">
   <head>
     <title>Jack Ketcham</title>
     {% include "partials/meta.django" %}
