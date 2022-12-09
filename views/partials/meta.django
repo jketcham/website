@@ -1,17 +1,18 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta name="description" content="Jack Ketcham's website">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+<meta name="description" content="Jack Ketcham's website" />
+<meta name="theme-color" content="antiquewhite" />
 
-<meta name="pgp" content="5075 540D A46A 5C23 74DE 6560 DC02 5880 B631 9C9D">
+<meta name="pgp" content="5075 540D A46A 5C23 74DE 6560 DC02 5880 B631 9C9D" />
 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-<link rel="me" href="https://mastodon.social/@jket">
-<link rel="me" href="https://twitter.com/_jket">
-<link rel="me" href="https://github.com/jketcham">
+<link rel="me" href="https://mastodon.social/@jket" />
+<link rel="me" href="https://twitter.com/_jket" />
+<link rel="me" href="https://github.com/jketcham" />
 
 <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
-<link rel="stylesheet" href="/main.css">
+<link rel="stylesheet" href="/main.css" />
