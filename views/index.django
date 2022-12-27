@@ -33,11 +33,15 @@
 
     <ul class="flex flex-wrap justify-center space-x-2">
       <li>
-        <a class="p-2" href="https://mastodon.social/@jket">@jket@mastodon.social</a>
+        <a class="p-2" href="https://mastodon.social/@jket">Mastodon</a>
       </li>
 
       <li>
-        <a class="p-2" href="https://twitter.com/_jket">@_jket@twitter.com</a>
+        <a class="p-2" href="https://twitter.com/_jket">Twitter</a>
+      </li>
+
+      <li>
+        <a class="p-2" href="https://www.are.na/jack-ketcham">Are.na</a>
       </li>
 
       <li>
