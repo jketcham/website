@@ -1,0 +1,11 @@
+<div class="w-full">
+  <div class="border-b-2 border-neutral-500 pb-2 my-4">
+    <div>
+      <a href="/">Home</a> / <span class="text-neutral-500">Projects</span>
+    </div>
+  </div>
+
+  <div>
+    <a href="/projects/bike-data">Bike Data</a>
+  </div>
+</div>

@@ -55,6 +55,14 @@ func main() {
     }, "layouts/main")
   })
 
+  app.Get("/projects/bike-data", func(c *fiber.Ctx) error {
+    return c.Render("bike_data", fiber.Map{}, "layouts/main")
+  })
+
+  app.Get("/projects", func(c *fiber.Ctx) error {
+    return c.Render("projects", fiber.Map{}, "layouts/main")
+  })
+
   app.Post("/theme", func(c *fiber.Ctx) error {
     cookie := new(fiber.Cookie)
     cookie.Name = "theme"
