@@ -35,32 +35,32 @@
     <div class="mb-2">Find me online:</div>
 
     <ul class="flex flex-wrap justify-center space-x-2">
-      <li>
-        <a class="p-2" href="https://mastodon.social/@jket">Mastodon</a>
+      <li class="flex">
+        <a class="p-3" href="https://mastodon.social/@jket">Mastodon</a>
       </li>
 
-      <li>
-        <a class="p-2" href="https://twitter.com/_jket">Twitter</a>
+      <li class="flex">
+        <a class="p-3" href="https://twitter.com/_jket">Twitter</a>
       </li>
 
-      <li>
-        <a class="p-2" href="https://www.are.na/jack-ketcham">Are.na</a>
+      <li class="flex">
+        <a class="p-3" href="https://www.are.na/jack-ketcham">Are.na</a>
       </li>
 
-      <li>
-        <a class="p-2" href="https://observablehq.com/@jketcham">Observable</a>
+      <li class="flex">
+        <a class="p-3" href="https://observablehq.com/@jketcham">Observable</a>
       </li>
 
-      <li>
-        <a class="p-2" href="https://github.com/jketcham">GitHub</a>
+      <li class="flex">
+        <a class="p-3" href="https://github.com/jketcham">GitHub</a>
       </li>
 
-      <li>
-        <a class="p-2" href="https://www.flickr.com/jackketcham">Flickr</a>
+      <li class="flex">
+        <a class="p-3" href="https://www.flickr.com/jackketcham">Flickr</a>
       </li>
 
-      <li>
-        <a class="p-2" href="https://www.strava.com/athletes/97729401">Strava</a>
+      <li class="flex">
+        <a class="p-3" href="https://www.strava.com/athletes/97729401">Strava</a>
       </li>
     </ul>
   </div>
