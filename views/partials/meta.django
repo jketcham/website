@@ -17,4 +17,4 @@
 <link rel="me" href="https://github.com/jketcham" />
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="/main.css" />
+<link rel="stylesheet" href="/main.min.css" />
