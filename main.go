@@ -38,6 +38,12 @@ func main() {
     return c.Next()
   })
 
+  app.Static("/images", "./public/images", fiber.Static{
+    Compress: true,
+    ByteRange: true,
+    MaxAge: 31536000,
+  })
+
   app.Static("/", "./public", fiber.Static{
     Compress: true,
     ByteRange: true,
@@ -46,7 +52,6 @@ func main() {
 
   app.Get("/", func(c *fiber.Ctx) error {
     theme := c.Cookies("theme", "day")
-
     c.Set("Link", "<https://jackketcham.com>; rel=\"canonical\"")
 
     return c.Render("index", fiber.Map{
@@ -81,6 +86,7 @@ func main() {
 
   app.Use(func(c *fiber.Ctx) error {
     theme := c.Cookies("theme", "day")
+
     return c.Status(404).Render("404", fiber.Map{
       "theme": theme,
       "theme_is_day": theme == "day",
