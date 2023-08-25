@@ -3,7 +3,7 @@
     <div class="md:row-span-3 border-solid border-current border-2">
       <picture class="block w-full md:w-96" style="aspect-ratio: 3/4;block-size: auto;object-fit: cover;object-position: top center;">
         <source srcset="/images/home_photo.webp" type="image/webp">
-        <img src="/images/home_photo.jpg" alt="" loading="eager" fetchpriority="high" style="width: 100%;">
+        <img src="/images/home_photo.jpg" alt="" loading="eager" fetchpriority="high" style="width: 100%;" width="384" height="512">
       </picture>
     </div>
 
