@@ -1,7 +1,7 @@
 <div class="grid grid-cols-1 my-auto gap-4 p-4 text-amber-800">
   <div class="grid gap-4 grid-flow-row md:p-0 md:grid-flow-col my-auto max-w-5xl">
     <div class="md:row-span-3 border-solid border-current border-2">
-      <picture class="block w-full md:w-96" style="aspect-ratio: 4/5;max-inline-size: 100%;block-size: auto;object-fit: cover;object-position: top center;">
+      <picture class="block w-full md:w-96" style="aspect-ratio: 4/5;block-size: auto;object-fit: cover;object-position: top center;">
         <source srcset="/images/home_photo.webp" type="image/webp">
         <img src="/images/home_photo.jpg" alt="" loading="eager" fetchpriority="high" height="480" width="384">
       </picture>
