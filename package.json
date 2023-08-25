@@ -1,0 +1,16 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Personal website of Jack Ketcham.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tailwindcss -i ./public/main.css -o ./public/main.min.css --minify",
+    "watch": "npx tailwindcss -i ./public/main.css -o ./public/main.min.css --watch"
+  },
+  "author": "Jack Ketcham",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
