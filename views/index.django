@@ -63,3 +63,8 @@
     </ul>
   </div>
 </div>
+
+<script>
+  console.log("%c👋 Hellooooooooooo there!", "font-weight: bold; color: #92400e; font-size: 2rem; font-style: italic;")
+  console.log("Check out the code for this website at https://github.com/jketcham/website");
+</script>
