@@ -2,9 +2,13 @@
 <html lang="en-US" class="h-full {{theme}}">
   <head>
     <title>Jack Ketcham</title>
+    <!--email_off-->
     {% include "partials/meta.django" %}
+    <!--/email_off-->
   </head>
   <body class="container mx-auto h-full">
+    <!--email_off-->
     {{embed}}
+    <!--/email_off-->
   </body>
 </html>

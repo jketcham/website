@@ -18,8 +18,8 @@
     <div class="border-solid border-current border-2 p-4 flex justify-center items-center text-center">
       <p>
         Feel free to get in touch with me at
-        <!--email_off--><a href="mailto:jack@ketcham.me"><!--/email_off-->
-          <!--email_off-->jack@ketcham.me<!--/email_off-->
+        <a href="mailto:jack@ketcham.me">
+          jack@ketcham.me
         </a>
       </p>
     </div>
