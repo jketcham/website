@@ -10,9 +10,9 @@
     <div class="border-solid border-current border-2 p-4 flex flex-col justify-center items-center space-y-3 text-center">
       <p>Hello!</p>
 
-      <p>My name is Jack, I'm a software engineer living in Tempe, Arizona.</p>
+      <p>My name is Jack, I'm a software engineer living in San Jose, CA.</p>
 
-      <p>I'm interested in open source, photography and transportation issues.</p>
+      <p>I'm interested in the intersections of software, community, and the built environment.</p>
     </div>
 
     <div class="border-solid border-current border-2 p-4 flex justify-center items-center text-center">
