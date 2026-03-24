@@ -34,31 +34,31 @@
 
     <ul class="flex flex-wrap justify-center space-x-2">
       <li class="flex">
-        <a class="p-3" href="https://mastodon.social/@jket">Mastodon</a>
+        <a class="p-3" href="https://mastodon.social/@jket"><span>Mastodon</span></a>
       </li>
 
       <li class="flex">
-        <a class="p-3" href="https://twitter.com/_jket">Twitter</a>
+        <a class="p-3" href="https://twitter.com/_jket"><span>Twitter</span></a>
       </li>
 
       <li class="flex">
-        <a class="p-3" href="https://www.are.na/jack-ketcham">Are.na</a>
+        <a class="p-3" href="https://www.are.na/jack-ketcham"><span>Are.na</span></a>
       </li>
 
       <li class="flex">
-        <a class="p-3" href="https://observablehq.com/@jketcham">Observable</a>
+        <a class="p-3" href="https://observablehq.com/@jketcham"><span>Observable</span></a>
       </li>
 
       <li class="flex">
-        <a class="p-3" href="https://github.com/jketcham">GitHub</a>
+        <a class="p-3" href="https://github.com/jketcham"><span>GitHub</span></a>
       </li>
 
       <li class="flex">
-        <a class="p-3" href="https://www.flickr.com/jackketcham">Flickr</a>
+        <a class="p-3" href="https://www.flickr.com/jackketcham"><span>Flickr</span></a>
       </li>
 
       <li class="flex">
-        <a class="p-3" href="https://www.strava.com/athletes/97729401">Strava</a>
+        <a class="p-3" href="https://www.strava.com/athletes/97729401"><span>Strava</span></a>
       </li>
     </ul>
   </div>

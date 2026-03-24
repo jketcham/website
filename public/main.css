@@ -16,6 +16,32 @@ a {
   color: currentColor;
 }
 
+.day a:hover {
+  background-color: #92400e;
+  color: antiquewhite;
+}
+
+.day a:has(> span):hover {
+  background-color: transparent;
+}
+
+.day a:hover > span {
+  background-color: #92400e;
+}
+
+.night a:hover {
+  background-color: currentColor;
+  color: darkslateblue;
+}
+
+.night a:has(> span):hover {
+  background-color: transparent;
+}
+
+.night a:hover > span {
+  background-color: currentColor;
+}
+
 pre {
   overflow: hidden;
   white-space: pre-line;
