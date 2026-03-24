@@ -22,6 +22,7 @@ COPY --from=build /app /app
 COPY public /public
 COPY views /views
 
+ENV PORT 3000
 EXPOSE 3000
 
 # Run dumb-init to take PID 1

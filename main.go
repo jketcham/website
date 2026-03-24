@@ -1,6 +1,8 @@
 package main
 
 import (
+  "crypto/sha256"
+  "encoding/hex"
   "os"
   "log"
 
@@ -11,6 +13,16 @@ import (
 )
 
 var is_prod = os.Getenv("ENV") == "prod"
+var PORT = os.Getenv("PORT")
+
+func hashFile(path string) string {
+  data, err := os.ReadFile(path)
+  if err != nil {
+    return ""
+  }
+  h := sha256.Sum256(data)
+  return hex.EncodeToString(h[:8])
+}
 
 func main() {
   engine := django.New("./views", ".django")
@@ -25,6 +37,13 @@ func main() {
     app.Use(logger.New())
   }
   app.Use(compress.New())
+
+  cssHash := hashFile("./public/main.min.css")
+
+  app.Use(func(c *fiber.Ctx) error {
+    c.Locals("css_hash", cssHash)
+    return c.Next()
+  })
 
   app.Use(func(c *fiber.Ctx) error {
     c.Set("X-XSS-Protection", "1; mode=block")
@@ -93,5 +112,5 @@ func main() {
     }, "layouts/main")
   })
 
-  log.Fatal(app.Listen(":3000"))
+  log.Fatal(app.Listen(":" + PORT))
 }
